@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : BaseCharacter
@@ -8,6 +9,9 @@ public class Player : BaseCharacter
     Inputs inputActions;
     [SerializeField] private Vector2 moveInput;
     [SerializeField] private Vector2 mouseInput;
+
+    [Header("Weapons")]
+    public Transform aim;
 
     private void Awake()
     {
@@ -32,6 +36,7 @@ public class Player : BaseCharacter
     {
         Move();
         Mouse();
+        Aim();
     }
 
     private void Move()
@@ -42,14 +47,23 @@ public class Player : BaseCharacter
     private void Mouse()
     {
         mouseInput = Camera.main.ScreenToWorldPoint(inputActions.Player.Mouse.ReadValue<Vector2>());
-        if (mouseInput.x > 0)
-        {
-            transform.localScale = new Vector3(1, 1 ,1);
-        }
-        else if (mouseInput.x < 0)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
+        //if (mouseInput.x > 0)
+        //{
+        //    transform.localScale = new Vector3(1, 1 ,1);
+        //}
+        //else if (mouseInput.x < 0)
+        //{
+        //    transform.localScale = new Vector3(-1, 1, 1);
+        //}
+    }
+
+    private void Aim()
+    {
+        //aim.position = new Vector3(mouseInput.x - transform.position.x, mouseInput.y - transform.position.y, transform.position.z);
+        Vector3 aimDir = new Vector3(mouseInput.x - transform.position.x, mouseInput.y - transform.position.y, transform.position.z).normalized;
+        float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
+        aim.transform.eulerAngles = new Vector3(0, 0, angle);
+        Debug.Log(angle);
     }
 
     private void FixedUpdate()
