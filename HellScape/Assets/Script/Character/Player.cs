@@ -31,11 +31,25 @@ public class Player : BaseCharacter
     void Update()
     {
         Move();
+        Mouse();
     }
 
     private void Move()
     {
-        moveInput = inputActions.Player.Movement.ReadValue<Vector2>();
+        moveInput = inputActions.Player.Movement.ReadValue<Vector2>().normalized;
+    }
+
+    private void Mouse()
+    {
+        mouseInput = Camera.main.ScreenToWorldPoint(inputActions.Player.Mouse.ReadValue<Vector2>());
+        if (mouseInput.x > 0)
+        {
+            transform.localScale = new Vector3(1, 1 ,1);
+        }
+        else if (mouseInput.x < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
     }
 
     private void FixedUpdate()
