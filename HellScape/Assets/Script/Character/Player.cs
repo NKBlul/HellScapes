@@ -10,7 +10,7 @@ public class Player : BaseCharacter
     [SerializeField] private Vector2 moveInput;
     [SerializeField] private Vector2 mouseInput;
 
-    [Header("Shoot")]
+    [Header("Shoot: ")]
     public GameObject bulletPrefab;
     public Transform aim;
     public Transform gunShoot;
@@ -45,7 +45,7 @@ public class Player : BaseCharacter
 
     private void Move()
     {
-        moveInput = inputActions.Player.Movement.ReadValue<Vector2>().normalized;
+        moveInput = inputActions.Player.Movement.ReadValue<Vector2>();
     }
 
     private void Mouse()
@@ -53,21 +53,23 @@ public class Player : BaseCharacter
         mouseInput = Camera.main.ScreenToWorldPoint(inputActions.Player.Mouse.ReadValue<Vector2>());
         if (mouseInput.x > 0)
         {
-            transform.localScale = new Vector3(1, 1 ,1);
-            aim.localScale = new Vector3(1, 1, 1);
-            gun.localScale = new Vector3(1, 1, 1);
+            FlipScale(1);
         }
         else if (mouseInput.x < 0)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
-            aim.localScale = new Vector3(-1, 1, 1);
-            gun.localScale = new Vector3(1, -1, 1);
+            FlipScale(-1);
         }
+    }
+
+    private void FlipScale(float scale)
+    {
+        transform.localScale = new Vector3(scale, 1, 1);
+        aim.localScale = new Vector3(scale, 1, 1);
+        gun.localScale = new Vector3(1, scale, 1);
     }
 
     private void Aim()
     {
-        //aim.position = new Vector3(mouseInput.x - transform.position.x, mouseInput.y - transform.position.y, transform.position.z);
         Vector3 aimDir = new Vector3(mouseInput.x - transform.position.x, mouseInput.y - transform.position.y, transform.position.z).normalized;
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
         aim.eulerAngles = new Vector3(0, 0, angle);
