@@ -14,6 +14,7 @@ public class Player : BaseCharacter
     public GameObject bulletPrefab;
     public Transform aim;
     public Transform gunShoot;
+    public Transform gun;
 
     private void Awake()
     {
@@ -50,14 +51,18 @@ public class Player : BaseCharacter
     private void Mouse()
     {
         mouseInput = Camera.main.ScreenToWorldPoint(inputActions.Player.Mouse.ReadValue<Vector2>());
-        //if (mouseInput.x > 0)
-        //{
-        //    transform.localScale = new Vector3(1, 1 ,1);
-        //}
-        //else if (mouseInput.x < 0)
-        //{
-        //    transform.localScale = new Vector3(-1, 1, 1);
-        //}
+        if (mouseInput.x > 0)
+        {
+            transform.localScale = new Vector3(1, 1 ,1);
+            aim.localScale = new Vector3(1, 1, 1);
+            gun.localScale = new Vector3(1, 1, 1);
+        }
+        else if (mouseInput.x < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+            aim.localScale = new Vector3(-1, 1, 1);
+            gun.localScale = new Vector3(1, -1, 1);
+        }
     }
 
     private void Aim()

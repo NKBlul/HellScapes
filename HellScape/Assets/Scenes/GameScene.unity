@@ -232,7 +232,7 @@ Transform:
   m_GameObject: {fileID: 294002137}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.417, y: -1.167, z: 0}
+  m_LocalPosition: {x: 0.371, y: -1.213, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -343,7 +343,6 @@ GameObject:
   m_Component:
   - component: {fileID: 810712939}
   - component: {fileID: 810712940}
-  - component: {fileID: 810712941}
   m_Layer: 0
   m_Name: weaponR2
   m_TagString: Untagged
@@ -359,7 +358,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 810712938}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -419,51 +418,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!61 &810712941
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 810712938}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.17660248, y: 0.82414496}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.17510721, y: 0.32175833}
-    oldSize: {x: 1.0871428, y: 0.5871429}
-    newSize: {x: 1.0871428, y: 0.5871429}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.9257143, y: 2.9257143}
-  m_EdgeRadius: 0
 --- !u!1 &1237177206
 GameObject:
   m_ObjectHideFlags: 0
@@ -666,6 +620,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 324318829828314069, guid: b65f8df5708db7246a13c4a51ddb9d79, type: 3}
   aim: {fileID: 294002138}
   gunShoot: {fileID: 1978772150}
+  gun: {fileID: 810712939}
 --- !u!1 &1744815240
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,7 +730,7 @@ Transform:
   m_GameObject: {fileID: 1978772149}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.047, y: 0.253, z: 0}
+  m_LocalPosition: {x: 1, y: 0.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
