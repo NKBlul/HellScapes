@@ -10,8 +10,10 @@ public class Player : BaseCharacter
     [SerializeField] private Vector2 moveInput;
     [SerializeField] private Vector2 mouseInput;
 
-    [Header("Weapons")]
+    [Header("Shoot")]
+    public GameObject bulletPrefab;
     public Transform aim;
+    public Transform gunShoot;
 
     private void Awake()
     {
@@ -37,6 +39,7 @@ public class Player : BaseCharacter
         Move();
         Mouse();
         Aim();
+        Shoot();
     }
 
     private void Move()
@@ -62,8 +65,16 @@ public class Player : BaseCharacter
         //aim.position = new Vector3(mouseInput.x - transform.position.x, mouseInput.y - transform.position.y, transform.position.z);
         Vector3 aimDir = new Vector3(mouseInput.x - transform.position.x, mouseInput.y - transform.position.y, transform.position.z).normalized;
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
-        aim.transform.eulerAngles = new Vector3(0, 0, angle);
-        Debug.Log(angle);
+        aim.eulerAngles = new Vector3(0, 0, angle);
+    }
+
+    private void Shoot()
+    {
+        if (inputActions.Player.Shoot.IsPressed())
+        {
+            GameObject bullet = Instantiate(bulletPrefab, gunShoot.position, gunShoot.rotation);
+            Destroy(bullet, 2.0f);
+        }
     }
 
     private void FixedUpdate()
