@@ -51,11 +51,19 @@ public class Player : BaseCharacter
             float moveMagnitude = Mathf.Max(Mathf.Abs(moveInput.x), Mathf.Abs(moveInput.y));
             animator.SetFloat("Move", moveMagnitude);
         }
+        else
+        {
+            animator.SetFloat("Move", 0);
+        }
     }
 
     private void Mouse()
     {
-        mouseInput = Camera.main.ScreenToWorldPoint(inputActions.Player.Mouse.ReadValue<Vector2>());
+        Vector2 mouseScreenPosition = inputActions.Player.Mouse.ReadValue<Vector2>();
+        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+
+        mouseInput = new Vector2(mouseWorldPosition.x - rb.position.x, mouseWorldPosition.y - rb.position.y);
+
         if (mouseInput.x > 0)
         {
             FlipScale(1);
