@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : BaseCharacter
 {
@@ -62,7 +63,7 @@ public class Player : BaseCharacter
         Vector2 mouseScreenPosition = inputActions.Player.Mouse.ReadValue<Vector2>();
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
 
-        mouseInput = new Vector2(mouseWorldPosition.x - rb.position.x, mouseWorldPosition.y - rb.position.y);
+        mouseInput = ((Vector2)mouseWorldPosition - rb.position).normalized;
 
         if (mouseInput.x > 0)
         {
@@ -83,7 +84,7 @@ public class Player : BaseCharacter
 
     private void Aim()
     {
-        Vector3 aimDir = new Vector3(mouseInput.x - transform.position.x, mouseInput.y - transform.position.y, transform.position.z).normalized;
+        Vector3 aimDir = mouseInput;
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
         aim.eulerAngles = new Vector3(0, 0, angle);
     }

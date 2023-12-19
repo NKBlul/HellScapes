@@ -393,10 +393,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock3
       objectReference: {fileID: 0}
-    - target: {fileID: 4961570273509403994, guid: b1ac447946ea29b4a82f1edbbf14535a, type: 3}
-      propertyPath: m_SortingOrder
-      value: -2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -760,22 +756,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock1
       objectReference: {fileID: 0}
-    - target: {fileID: 8525614288896976241, guid: ca95aaa06c7a7764fbd2bdaa136c0d83, type: 3}
-      propertyPath: m_Color.b
-      value: 0.47058827
-      objectReference: {fileID: 0}
-    - target: {fileID: 8525614288896976241, guid: ca95aaa06c7a7764fbd2bdaa136c0d83, type: 3}
-      propertyPath: m_Color.g
-      value: 0.30980393
-      objectReference: {fileID: 0}
-    - target: {fileID: 8525614288896976241, guid: ca95aaa06c7a7764fbd2bdaa136c0d83, type: 3}
-      propertyPath: m_Color.r
-      value: 0.3372549
-      objectReference: {fileID: 0}
-    - target: {fileID: 8525614288896976241, guid: ca95aaa06c7a7764fbd2bdaa136c0d83, type: 3}
-      propertyPath: m_SortingOrder
-      value: -2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -874,11 +854,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7838037842001423474, guid: 3390da53cf216d94093911c062fcaa5c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.57
+      value: -4.1
       objectReference: {fileID: 0}
     - target: {fileID: 7838037842001423474, guid: 3390da53cf216d94093911c062fcaa5c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.68
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 7838037842001423474, guid: 3390da53cf216d94093911c062fcaa5c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1373,7 +1353,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!95 &1237177211
 Animator:
   serializedVersion: 5
