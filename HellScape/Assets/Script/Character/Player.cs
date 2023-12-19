@@ -46,6 +46,11 @@ public class Player : BaseCharacter
     private void Move()
     {
         moveInput = inputActions.Player.Movement.ReadValue<Vector2>();
+        if (moveInput.x != 0 || moveInput.y != 0)
+        {
+            float moveMagnitude = Mathf.Max(Mathf.Abs(moveInput.x), Mathf.Abs(moveInput.y));
+            animator.SetFloat("Move", moveMagnitude);
+        }
     }
 
     private void Mouse()
