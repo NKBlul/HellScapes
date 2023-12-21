@@ -2,17 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseEnemy : MonoBehaviour
+public class BaseEnemy : BaseCharacter
 {
+    private Transform player;
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        
+        base.Start();
+
+        player = FindObjectOfType<Player>().transform;
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
-        
+        MoveToPlayer();
+    }
+
+    private void MoveToPlayer()
+    {
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+
+        if (transform.position.x < player.position.x) //enemy on the left
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        else if (transform.position.x > player.position.x) //enemy on the right
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
     }
 }
