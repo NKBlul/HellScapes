@@ -1396,6 +1396,7 @@ MonoBehaviour:
   aim: {fileID: 294002138}
   gunShoot: {fileID: 1978772150}
   gun: {fileID: 810712939}
+  offset: 180
 --- !u!1001 &1269760166
 PrefabInstance:
   m_ObjectHideFlags: 0

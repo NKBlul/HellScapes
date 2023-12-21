@@ -16,6 +16,7 @@ public class Player : BaseCharacter
     public Transform aim;
     public Transform gunShoot;
     public Transform gun;
+    public float offset;
 
     private void Awake()
     {
@@ -84,9 +85,9 @@ public class Player : BaseCharacter
 
     private void Aim()
     {
-        Vector3 aimDir = mouseInput;
+        Vector2 aimDir = aim.position - Camera.main.ScreenToWorldPoint(inputActions.Player.Mouse.ReadValue<Vector2>());
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
-        aim.eulerAngles = new Vector3(0, 0, angle);
+        aim.eulerAngles = new Vector3(0, 0, angle + offset);
     }
 
     private void Shoot()
