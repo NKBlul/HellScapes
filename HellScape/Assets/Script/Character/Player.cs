@@ -18,6 +18,10 @@ public class Player : BaseCharacter
     public Transform gun;
     public float offset;
 
+    [Header("Dodge: ")]
+    private bool dodge = false;
+    private bool isDodging = false;
+
     private void Awake()
     {
         inputActions = new Inputs();
@@ -43,6 +47,8 @@ public class Player : BaseCharacter
         Mouse();
         Aim();
         Shoot();
+        Dodge();
+        SetAnimatorValue();
     }
 
     private void Move()
@@ -99,6 +105,15 @@ public class Player : BaseCharacter
         }
     }
 
+    private void Dodge()
+    {
+        if (inputActions.Player.Dodge.IsPressed() && isDodging == false)
+        {
+            dodge = true;
+            isDodging = true;
+        }
+    }
+
     private void FixedUpdate()
     {
         rb.velocity = moveInput * moveSpeed;
@@ -113,4 +128,17 @@ public class Player : BaseCharacter
     {
         inputActions.Player.Disable();
     }
+
+    #region animationHelperFunction
+    private void SetAnimatorValue()
+    {
+        animator.SetBool("Dodge", dodge);
+    }
+    public void FinishDodging()
+    {
+        dodge = false;
+        isDodging = false;
+        //col.enabled = true;
+    }
+    #endregion
 }
