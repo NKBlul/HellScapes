@@ -21,6 +21,7 @@ public class Player : BaseCharacter
     [Header("Dodge: ")]
     private bool dodge = false;
     private bool isDodging = false;
+    private float dodgeSpeed = 5f;
 
     private void Awake()
     {
@@ -98,25 +99,49 @@ public class Player : BaseCharacter
 
     private void Shoot()
     {
-        if (inputActions.Player.Shoot.IsPressed())
+        if (inputActions.Player.Shoot.triggered)
         {
-            GameObject bullet = Instantiate(bulletPrefab, gunShoot.position, gunShoot.rotation);
+            ShootBulletAmount(3);
+        }
+    }
+
+    private void ShootBulletAmount(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            // Calculate rotation based on the player's gunShoot rotation
+            Quaternion bulletRotation = gunShoot.rotation;
+
+            // Adjust the rotation based on the loop index and total bullet count
+            float angleOffset = (amount - 1) * 22.5f; // Half of the total angle spread
+            float angle = (i * 45f) - angleOffset;
+            bulletRotation *= Quaternion.Euler(0f, 0f, angle);
+
+            // Instantiate the bullet with the calculated rotation
+            GameObject bullet = Instantiate(bulletPrefab, gunShoot.position, bulletRotation);
             Destroy(bullet, 2.0f);
         }
     }
 
     private void Dodge()
     {
-        if (inputActions.Player.Dodge.IsPressed() && isDodging == false)
+        if (inputActions.Player.Dodge.triggered && !isDodging)
         {
             dodge = true;
             isDodging = true;
+
+            Vector2 dodgeDir = mouseInput;  
         }
     }
 
     private void FixedUpdate()
     {
         rb.velocity = moveInput * moveSpeed;
+        if (isDodging)
+        {
+            rb.velocity = mouseInput * dodgeSpeed;
+            Debug.Log(rb.velocity);
+        }
     }
 
     private void OnEnable()
@@ -138,6 +163,8 @@ public class Player : BaseCharacter
     {
         dodge = false;
         isDodging = false;
+
+        rb.velocity = Vector2.zero;
         //col.enabled = true;
     }
     #endregion
