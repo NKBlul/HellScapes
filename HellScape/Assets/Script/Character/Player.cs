@@ -20,7 +20,6 @@ public class Player : BaseCharacter
 
     [Header("Dodge: ")]
     private bool dodge = false;
-    private bool isDodging = false;
     private float dodgeSpeed = 5f;
 
     private void Awake()
@@ -125,11 +124,9 @@ public class Player : BaseCharacter
 
     private void Dodge()
     {
-        if (inputActions.Player.Dodge.triggered && !isDodging)
+        if (inputActions.Player.Dodge.triggered && !dodge)
         {
             dodge = true;
-            isDodging = true;
-
             Vector2 dodgeDir = mouseInput;  
         }
     }
@@ -137,10 +134,9 @@ public class Player : BaseCharacter
     private void FixedUpdate()
     {
         rb.velocity = moveInput * moveSpeed;
-        if (isDodging)
+        if (dodge)
         {
             rb.velocity = mouseInput * dodgeSpeed;
-            Debug.Log(rb.velocity);
         }
     }
 
@@ -162,10 +158,14 @@ public class Player : BaseCharacter
     public void FinishDodging()
     {
         dodge = false;
-        isDodging = false;
 
         rb.velocity = Vector2.zero;
         //col.enabled = true;
+    }
+
+    public void FinishHit()
+    {
+        animator.SetBool("Hit", false);
     }
     #endregion
 }
