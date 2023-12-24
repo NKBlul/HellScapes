@@ -35,7 +35,8 @@ public class BaseCharacter : MonoBehaviour
 
     protected virtual void Die()
     {
-
+        //animator.SetBool("Dead", true);
+        animator.SetTrigger("Dead");
     }
 
     public float GetHP()
@@ -46,5 +47,10 @@ public class BaseCharacter : MonoBehaviour
     public float GetDamage()
     {
         return damage;
+    }
+
+    public void FinishDeadAnim()
+    {
+        Destroy(gameObject);
     }
 }

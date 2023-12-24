@@ -32,4 +32,11 @@ public class BaseEnemy : BaseCharacter
             transform.localScale = new Vector3(-1, 1, 1);
         }
     }
+
+    protected override void Die()
+    {
+        base.Die();
+
+        moveSpeed = 0;
+    }
 }
