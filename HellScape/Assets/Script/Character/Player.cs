@@ -20,7 +20,7 @@ public class Player : BaseCharacter
 
     [Header("Dodge: ")]
     private bool dodge = false;
-    private float dodgeSpeed = 5f;
+    private float dodgeSpeed = 7f;
 
     private void Awake()
     {
@@ -127,7 +127,7 @@ public class Player : BaseCharacter
         if (inputActions.Player.Dodge.triggered && !dodge)
         {
             dodge = true;
-            Vector2 dodgeDir = mouseInput;  
+            col.enabled = false;
         }
     }
 
@@ -158,14 +158,14 @@ public class Player : BaseCharacter
     public void FinishDodging()
     {
         dodge = false;
-
+        col.enabled = true;
         rb.velocity = Vector2.zero;
-        //col.enabled = true;
     }
 
     public void FinishHit()
     {
         animator.SetBool("Hit", false);
+        col.enabled = true;
     }
     #endregion
 }

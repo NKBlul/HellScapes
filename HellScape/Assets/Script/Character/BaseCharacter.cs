@@ -26,6 +26,7 @@ public class BaseCharacter : MonoBehaviour
     public virtual void TakeDamage(float damage)
     {
         currentHp -= damage;
+        Debug.Log(currentHp);
         if (currentHp <= 0)
         {
             Die();
