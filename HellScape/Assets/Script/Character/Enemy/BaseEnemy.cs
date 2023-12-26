@@ -5,11 +5,13 @@ using UnityEngine;
 public class BaseEnemy : BaseCharacter
 {
     private Transform player;
+    Vector3 defaultScale;
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
 
+        defaultScale = transform.localScale;
         player = FindObjectOfType<Player>().transform;
     }
 
@@ -25,11 +27,11 @@ public class BaseEnemy : BaseCharacter
 
         if (transform.position.x < player.position.x) //enemy on the left
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = defaultScale;
         }
         else if (transform.position.x > player.position.x) //enemy on the right
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-defaultScale.x, defaultScale.y, defaultScale.z);
         }
     }
 
