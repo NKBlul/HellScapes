@@ -15,6 +15,7 @@ public class Spawner : MonoBehaviour
 
     private int waveNum;
     private int enemyToSpawn;
+    private int numOfEnemyLeft;
 
     // Start is called before the first frame update
     void Start()
@@ -35,11 +36,43 @@ public class Spawner : MonoBehaviour
         {
             spawnPoints.Add(child);
         }
+
+        SpawnEnemy(3);
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+       numOfEnemyLeft = GameObject.FindGameObjectsWithTag("Enemy").Length;
+       if (numOfEnemyLeft == 0)
+       {
+            SpawnEnemy(3 + waveNum);
+       }
+    }
+
+    Vector3 RandomSpawnPoint()
+    {
+        Transform randomSpawn = spawnPoints[Random.Range(0, spawnPoints.Count)];
+        return randomSpawn.position;
+    }
+
+    GameObject RandomEnemies()
+    {
+        List<GameObject> minions = enemyPrefabs.Where(enemy => enemy != boss).ToList();
+        GameObject randomEnemySpawn = minions[Random.Range(0, minions.Count)];
+        return randomEnemySpawn;
+    }
+
+    private void SpawnEnemy(int numOfEnemiesToSpawn)
+    {    
+        for (int i = 0; i < numOfEnemiesToSpawn; i++) 
+        {
+            Instantiate(RandomEnemies(), RandomSpawnPoint(), Quaternion.identity);
+        }
+        if (waveNum % 3 == 0)
+        {
+            Instantiate(boss, RandomSpawnPoint(), Quaternion.identity);
+        }
+        waveNum++;
     }
 }
