@@ -20,7 +20,7 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        waveNum = 1;
+        waveNum = 0;
 
         enemyPrefabs.AddRange(Resources.LoadAll<GameObject>("Prefab/Enemy"));
         foreach(GameObject enemy in enemyPrefabs)
@@ -64,7 +64,8 @@ public class Spawner : MonoBehaviour
     }
 
     private void SpawnEnemy(int numOfEnemiesToSpawn)
-    {    
+    {
+        waveNum++;
         for (int i = 0; i < numOfEnemiesToSpawn; i++) 
         {
             Instantiate(RandomEnemies(), RandomSpawnPoint(), Quaternion.identity);
@@ -72,7 +73,6 @@ public class Spawner : MonoBehaviour
         if (waveNum % 3 == 0)
         {
             Instantiate(boss, RandomSpawnPoint(), Quaternion.identity);
-        }
-        waveNum++;
+        }  
     }
 }
