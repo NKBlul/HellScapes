@@ -10,7 +10,7 @@ public class Bat : BaseEnemy
         base.Start();
 
         maxHp = 5f;
-        moveSpeed = 5f;
+        moveSpeed = 7f;
         damage = 1f;
 
         currentHp = maxHp;

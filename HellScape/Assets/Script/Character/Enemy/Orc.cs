@@ -9,9 +9,9 @@ public class Orc : BaseEnemy
     {
         base.Start();
 
-        maxHp = 15f;
-        moveSpeed = 5f;
-        damage = 3f;
+        maxHp = 20f;
+        moveSpeed = 7f;
+        damage = 5f;
 
         currentHp = maxHp;
     }
