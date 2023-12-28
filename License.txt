@@ -2,6 +2,9 @@ Sprite:
 ============== CC0 ==============
 Free CC0 Modular Animated Vector Characters 2D - by RGS_Dev, https://rgsdev.itch.io/free-cc0-modular-animated-vector-characters-2d
 
+============== CC-BY-SA ==============
+UI Buttons - by Kicked-in-Teeth, https://kicked-in-teeth.itch.io/button-ui
+
 Font:
 ============== SIL Open Font License (OFL) ==============
 Connection Serif - by KinecticPlasma Fonts, https://www.fontspace.com/connection-serif-font-f26406
