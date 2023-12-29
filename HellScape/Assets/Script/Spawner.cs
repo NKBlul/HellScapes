@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,8 @@ using UnityEngine.UI;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] Image progressionBar;
+    [SerializeField] TextMeshProUGUI enemyLeftText;
+    [SerializeField] TextMeshProUGUI waveText;
 
     public Transform spawnPoint;
 
@@ -51,6 +54,7 @@ public class Spawner : MonoBehaviour
     void Update()
     {
        numOfEnemyLeft = GameObject.FindGameObjectsWithTag("Enemy").Length;
+       enemyLeftText.text = numOfEnemyLeft.ToString();
        progressionBar.fillAmount = Mathf.Lerp(progressionBar.fillAmount, (float)numOfEnemyLeft / totalEnemyThisWave, Time.deltaTime * 5f);
        if (numOfEnemyLeft == 0)
        {
@@ -75,6 +79,7 @@ public class Spawner : MonoBehaviour
     private void SpawnEnemy(int numOfEnemiesToSpawn)
     {
         waveNum++;
+        waveText.text = $"Wave: {waveNum}";
         totalEnemyThisWave = numOfEnemiesToSpawn;
         for (int i = 0; i < numOfEnemiesToSpawn; i++) 
         {
