@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class Pause : MonoBehaviour
 {
+    public static Pause instance;
+
     public GameObject pausePanel;
     public bool isPause = false;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     public void PauseGame()
     {

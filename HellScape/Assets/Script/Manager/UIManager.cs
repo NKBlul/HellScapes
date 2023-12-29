@@ -13,7 +13,9 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI waveText;
     public TextMeshProUGUI timerText;
 
-    public GameObject pause;
+    public GameObject losePanel;
+    public TextMeshProUGUI loseScore;
+    public TextMeshProUGUI loseTimer;
 
     private void Awake()
     {

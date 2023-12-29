@@ -23,9 +23,6 @@ public class Player : BaseCharacter
     private bool dodge = false;
     private float dodgeSpeed = 7f;
 
-    [Header("References: ")]
-    Pause pause;
-
     private void Awake()
     {
         inputActions = new Inputs();
@@ -35,8 +32,6 @@ public class Player : BaseCharacter
     protected override void Start()
     {
         base.Start();
-
-        pause = GameObject.Find("PauseManager").GetComponent<Pause>();
 
         maxHp = 10f;
         moveSpeed = 5f;
@@ -55,7 +50,7 @@ public class Player : BaseCharacter
         Shoot();
         Dodge();
         SetAnimatorValue();
-        Pause();
+        PauseGame();
     }
 
     private void Move()
@@ -111,20 +106,28 @@ public class Player : BaseCharacter
         }
     }
 
-    private void Pause()
+    private void PauseGame()
     {
         if (inputActions.Player.Pause.triggered)
         {
-            if (!pause.isPause)
+            if (!Pause.instance.isPause)
             {
-                pause.PauseGame();
-                OnDisable();
+                Pause.instance.PauseGame();
+
+                inputActions.Player.Movement.Disable();
+                inputActions.Player.Mouse.Disable();
+                inputActions.Player.Dodge.Disable();
+                inputActions.Player.Shoot.Disable();
                 inputActions.Player.Pause.Enable();
             }
             else
             {
-                pause.ContinueGame();
-                OnEnable();
+                Pause.instance.ContinueGame();
+                inputActions.Player.Movement.Enable();
+                inputActions.Player.Mouse.Enable();
+                inputActions.Player.Dodge.Enable();
+                inputActions.Player.Shoot.Enable();
+                inputActions.Player.Pause.Enable();
             }
         }
     }
@@ -165,12 +168,12 @@ public class Player : BaseCharacter
         }
     }
 
-    private void OnEnable()
+    public void OnEnable()
     {
         inputActions.Player.Enable();
     }
 
-    private void OnDisable() 
+    public void OnDisable() 
     {
         inputActions.Player.Disable();
     }
