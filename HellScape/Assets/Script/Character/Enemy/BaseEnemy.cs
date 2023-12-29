@@ -38,7 +38,12 @@ public class BaseEnemy : BaseCharacter
     protected override void Die()
     {
         base.Die();
-
+        
         moveSpeed = 0;
+    }
+
+    public void UpdateScoreWhenDead(int score)
+    {
+        ScoreManager.UpdateScoreText(score);
     }
 }
