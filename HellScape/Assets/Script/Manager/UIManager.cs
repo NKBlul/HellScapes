@@ -13,20 +13,10 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI waveText;
     public TextMeshProUGUI timerText;
 
+    public GameObject pause;
+
     private void Awake()
     {
         Instance = this;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -23,6 +23,9 @@ public class Player : BaseCharacter
     private bool dodge = false;
     private float dodgeSpeed = 7f;
 
+    [Header("References: ")]
+    Pause pause;
+
     private void Awake()
     {
         inputActions = new Inputs();
@@ -32,6 +35,8 @@ public class Player : BaseCharacter
     protected override void Start()
     {
         base.Start();
+
+        pause = GameObject.Find("PauseManager").GetComponent<Pause>();
 
         maxHp = 10f;
         moveSpeed = 5f;
@@ -50,6 +55,7 @@ public class Player : BaseCharacter
         Shoot();
         Dodge();
         SetAnimatorValue();
+        Pause();
     }
 
     private void Move()
@@ -107,9 +113,16 @@ public class Player : BaseCharacter
 
     private void Pause()
     {
-        if (inputActions.Player.Pause.triggered)
+        if (inputActions.Player.Pause.triggered && !pause.isPause)
         {
-
+            pause.PauseGame();
+            OnDisable();
+            inputActions.Player.Pause.Enable();
+        }
+        else if (inputActions.Player.Pause.triggered && pause.isPause)
+        {
+            pause.ContinueGame();
+            OnEnable();
         }
     }
 
