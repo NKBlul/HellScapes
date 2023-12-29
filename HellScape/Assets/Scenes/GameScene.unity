@@ -2651,7 +2651,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1436440135}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: DisableAllInputButPause
+        m_MethodName: OnEnable
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

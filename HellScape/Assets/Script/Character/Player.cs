@@ -113,7 +113,8 @@ public class Player : BaseCharacter
             if (!Pause.instance.isPause)
             {
                 Pause.instance.PauseGame();
-                DisableAllInputButPause();
+                OnDisable();
+                inputActions.Player.Pause.Enable();
             }
             else
             {
@@ -121,12 +122,6 @@ public class Player : BaseCharacter
                 OnEnable();
             }
         }
-    }
-
-    public void DisableAllInputButPause()
-    {
-        OnDisable();
-        inputActions.Player.Pause.Enable();
     }
 
     private void ShootBulletAmount(int amount)
