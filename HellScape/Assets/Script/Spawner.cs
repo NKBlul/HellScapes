@@ -23,8 +23,10 @@ public class Spawner : MonoBehaviour
         waveNum = 0;
 
         enemyPrefabs.AddRange(Resources.LoadAll<GameObject>("Prefab/Enemy"));
+        //check all gameobject in enemy prefabs,
         foreach(GameObject enemy in enemyPrefabs)
         {
+            //if enemy name equals to orc
             if (enemy.name == "Orc")
             {
                 boss = enemy;
@@ -58,7 +60,8 @@ public class Spawner : MonoBehaviour
 
     GameObject RandomEnemies()
     {
-        List<GameObject> minions = enemyPrefabs.Where(enemy => enemy != boss).ToList();
+        //get all gameobject from list of enemy prefabs, selecsts all that is not boss and add it to a list
+        List<GameObject> minions = enemyPrefabs.Where(enemy => enemy != boss).ToList(); 
         GameObject randomEnemySpawn = minions[Random.Range(0, minions.Count)];
         return randomEnemySpawn;
     }
