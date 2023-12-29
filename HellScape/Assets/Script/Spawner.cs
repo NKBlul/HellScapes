@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Spawner : MonoBehaviour
 {
+    [SerializeField] Image progressionBar;
+
     public Transform spawnPoint;
 
     private List<GameObject> enemyPrefabs = new List<GameObject>();
@@ -16,6 +19,8 @@ public class Spawner : MonoBehaviour
     private int waveNum;
     private int enemyToSpawn;
     private int numOfEnemyLeft;
+
+    private int totalEnemyThisWave;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +51,7 @@ public class Spawner : MonoBehaviour
     void Update()
     {
        numOfEnemyLeft = GameObject.FindGameObjectsWithTag("Enemy").Length;
+       progressionBar.fillAmount = Mathf.Lerp(progressionBar.fillAmount, (float)numOfEnemyLeft / totalEnemyThisWave, Time.deltaTime * 5f);
        if (numOfEnemyLeft == 0)
        {
             SpawnEnemy(3 + waveNum);
@@ -69,6 +75,7 @@ public class Spawner : MonoBehaviour
     private void SpawnEnemy(int numOfEnemiesToSpawn)
     {
         waveNum++;
+        totalEnemyThisWave = numOfEnemiesToSpawn;
         for (int i = 0; i < numOfEnemiesToSpawn; i++) 
         {
             Instantiate(RandomEnemies(), RandomSpawnPoint(), Quaternion.identity);

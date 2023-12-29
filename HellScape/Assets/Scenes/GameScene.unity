@@ -928,7 +928,7 @@ GameObject:
   - component: {fileID: 477440694}
   - component: {fileID: 477440693}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -980,7 +980,7 @@ MonoBehaviour:
   m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &477440694
@@ -1040,7 +1040,7 @@ GameObject:
   - component: {fileID: 515884061}
   - component: {fileID: 515884060}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2576,6 +2576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09d14303e4637f74fa40e725cbca9cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  progressionBar: {fileID: 477440693}
   spawnPoint: {fileID: 258040274}
 --- !u!4 &1195248102
 Transform:
