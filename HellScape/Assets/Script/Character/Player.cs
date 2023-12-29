@@ -113,16 +113,19 @@ public class Player : BaseCharacter
 
     private void Pause()
     {
-        if (inputActions.Player.Pause.triggered && !pause.isPause)
+        if (inputActions.Player.Pause.triggered)
         {
-            pause.PauseGame();
-            OnDisable();
-            inputActions.Player.Pause.Enable();
-        }
-        else if (inputActions.Player.Pause.triggered && pause.isPause)
-        {
-            pause.ContinueGame();
-            OnEnable();
+            if (!pause.isPause)
+            {
+                pause.PauseGame();
+                OnDisable();
+                inputActions.Player.Pause.Enable();
+            }
+            else
+            {
+                pause.ContinueGame();
+                OnEnable();
+            }
         }
     }
 
