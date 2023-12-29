@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -101,6 +102,14 @@ public class Player : BaseCharacter
         if (inputActions.Player.Shoot.triggered)
         {
             ShootBulletAmount(3);
+        }
+    }
+
+    private void Pause()
+    {
+        if (inputActions.Player.Pause.triggered)
+        {
+
         }
     }
 

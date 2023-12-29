@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI timerText;
     public float elapsedTime;
     [HideInInspector] public bool isCounting;
     int minutes;
@@ -25,10 +24,10 @@ public class Timer : MonoBehaviour
         if (isCounting)
         {
             elapsedTime += Time.deltaTime;
-            timerText.text = elapsedTime.ToString();
+            UIManager.Instance.timerText.text = elapsedTime.ToString();
             minutes = Mathf.FloorToInt(elapsedTime / 60);
             seconds = Mathf.FloorToInt(elapsedTime % 60);
-            timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            UIManager.Instance.timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
         }
     }
 
