@@ -49,6 +49,7 @@ public class BaseEnemy : BaseCharacter
             moveSpeed = 0;
             UIManager.Instance.losePanel.SetActive(true);
             other.gameObject.GetComponent<Player>().OnDisable();
+            Pause.instance.PauseTimeScale();
             UIManager.Instance.loseScore.text = $"Score: {ScoreManager.score.ToString()}";
             UIManager.Instance.loseTimer.text = UIManager.Instance.timerText.text;
         }

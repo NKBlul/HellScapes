@@ -113,23 +113,20 @@ public class Player : BaseCharacter
             if (!Pause.instance.isPause)
             {
                 Pause.instance.PauseGame();
-
-                inputActions.Player.Movement.Disable();
-                inputActions.Player.Mouse.Disable();
-                inputActions.Player.Dodge.Disable();
-                inputActions.Player.Shoot.Disable();
-                inputActions.Player.Pause.Enable();
+                DisableAllInputButPause();
             }
             else
             {
                 Pause.instance.ContinueGame();
-                inputActions.Player.Movement.Enable();
-                inputActions.Player.Mouse.Enable();
-                inputActions.Player.Dodge.Enable();
-                inputActions.Player.Shoot.Enable();
-                inputActions.Player.Pause.Enable();
+                OnEnable();
             }
         }
+    }
+
+    public void DisableAllInputButPause()
+    {
+        OnDisable();
+        inputActions.Player.Pause.Enable();
     }
 
     private void ShootBulletAmount(int amount)
