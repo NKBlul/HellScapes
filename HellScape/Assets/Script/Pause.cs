@@ -11,13 +11,23 @@ public class Pause : MonoBehaviour
     {
         pausePanel.SetActive(true);
         isPause = true;
-        Time.timeScale = 0.0f;
+        PauseTimeScale();
     }
 
     public void ContinueGame()
     {
         pausePanel.SetActive(false);
         isPause = false;
+        ResetTimeScale();
+    }
+
+    public void PauseTimeScale()
+    {
+        Time.timeScale = 0.0f;
+    }
+
+    public void ResetTimeScale()
+    {
         Time.timeScale = 1.0f;
     }
 }

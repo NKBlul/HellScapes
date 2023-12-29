@@ -2,6 +2,7 @@ Sprite:
 ============== CC0 ==============
 Free CC0 Modular Animated Vector Characters 2D - by RGS_Dev, https://rgsdev.itch.io/free-cc0-modular-animated-vector-characters-2d
 Simple pixel art UI pack - by Kobliznik, https://kobliznik.itch.io/pixel-ui-pack
+Pixel Keyboard Keys - for UI - by Dream Mix, https://dreammix.itch.io/keyboard-keys-for-ui
 
 Font:
 ============== SIL Open Font License (OFL) ==============
