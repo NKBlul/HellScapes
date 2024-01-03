@@ -107,7 +107,7 @@ public class Spawner : MonoBehaviour
         {
             Instantiate(RandomEnemies(), RandomSpawnPoint(), Quaternion.identity); //Spawn random enemy thats not boss, at different spawn point
         }
-        if (waveNum % 3 == 0) //every 3 wave summon a boss monster
+        if (waveNum % bossWave == 0) //every 3 wave summon a boss monster
         {
             for (int i = 0; i < numOfBossToSpawn; i++) //summon extra boss every 3 wave
             {
