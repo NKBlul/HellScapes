@@ -41,22 +41,4 @@ public class BaseEnemy : BaseCharacter
         
         moveSpeed = 0;
     }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            moveSpeed = 0;
-            UIManager.Instance.losePanel.SetActive(true);
-            other.gameObject.GetComponent<Player>().OnDisable();
-            Pause.instance.PauseTimeScale();
-            UIManager.Instance.loseScore.text = $"Score: {ScoreManager.score.ToString()}";
-            UIManager.Instance.loseTimer.text = UIManager.Instance.timerText.text;
-        }
-    }
-
-    public void UpdateScoreWhenDead(int score)
-    {
-        ScoreManager.UpdateScoreText(score);
-    }
 }

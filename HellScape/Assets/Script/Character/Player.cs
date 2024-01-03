@@ -160,6 +160,25 @@ public class Player : BaseCharacter
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            aim.gameObject.SetActive(false);
+            Timer.instance.isCounting = false;        
+            PlayDeadAnim();
+            SetAllEnemySpeed(0f);
+            OnDisable();         
+        }
+    }
+
+    public void OnDie()
+    {
+        UIManager.Instance.losePanel.SetActive(true);
+        UIManager.Instance.loseScore.text = $"Score: {ScoreManager.score.ToString()}";
+        UIManager.Instance.loseTimer.text = UIManager.Instance.timerText.text;
+    }
+
     public void OnEnable()
     {
         inputActions.Player.Enable();

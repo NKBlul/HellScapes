@@ -35,6 +35,11 @@ public class BaseCharacter : MonoBehaviour
 
     protected virtual void Die()
     {
+        PlayDeadAnim();
+    }
+
+    public void PlayDeadAnim()
+    {
         animator.SetTrigger("Dead");
     }
 
@@ -51,5 +56,14 @@ public class BaseCharacter : MonoBehaviour
     public void FinishDeadAnim()
     {
         Destroy(gameObject);
+    }
+
+    public void SetAllEnemySpeed(float speed)
+    {
+        BaseEnemy[] enemies = FindObjectsOfType<BaseEnemy>();
+        foreach (BaseEnemy enemy in enemies)
+        {
+            enemy.moveSpeed = speed;
+        }
     }
 }
