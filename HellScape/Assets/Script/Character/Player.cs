@@ -157,7 +157,14 @@ public class Player : BaseCharacter
         rb.velocity = moveInput * moveSpeed;
         if (dodge)
         {
-            rb.velocity = mouseInput * dodgeSpeed;
+            if (moveInput == Vector2.zero)
+            {
+                rb.velocity = new Vector2(transform.localScale.x, 0) * dodgeSpeed;
+            }
+            else
+            {
+                rb.velocity = moveInput * dodgeSpeed;
+            }          
         }
     }
 
