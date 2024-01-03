@@ -31,6 +31,7 @@ public class Spawner : MonoBehaviour
             //if enemy name equals to orc
             if (enemy.name == "Orc")
             {
+                //set orc to boss
                 boss = enemy;
                 break;
             }
@@ -50,9 +51,10 @@ public class Spawner : MonoBehaviour
        numOfEnemyLeft = GameObject.FindGameObjectsWithTag("Enemy").Length;
        UIManager.Instance.enemyLeftText.text = numOfEnemyLeft.ToString();
        UIManager.Instance.progressionBar.fillAmount = Mathf.Lerp(UIManager.Instance.progressionBar.fillAmount, (float)numOfEnemyLeft / totalEnemyThisWave, Time.deltaTime * 5f);
-       if (numOfEnemyLeft == 0)
+       
+       if (numOfEnemyLeft == 0) //if all enemy died
        {
-            SpawnEnemy(3 + waveNum);
+            SpawnEnemy(3 + waveNum); //spawn next wave
        }
     }
 

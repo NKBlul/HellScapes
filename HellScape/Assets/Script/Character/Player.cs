@@ -100,7 +100,7 @@ public class Player : BaseCharacter
 
     private void Shoot()
     {
-        if (inputActions.Player.Shoot.triggered)
+        if (inputActions.Player.Shoot.triggered && !dodge)
         {
             ShootBulletAmount(3);
         }
@@ -146,6 +146,7 @@ public class Player : BaseCharacter
     {
         if (inputActions.Player.Dodge.triggered && !dodge)
         {
+            aim.gameObject.SetActive(false);
             dodge = true;
             col.enabled = false;
         }
@@ -196,6 +197,7 @@ public class Player : BaseCharacter
     }
     public void FinishDodging()
     {
+        aim.gameObject.SetActive(true);
         dodge = false;
         col.enabled = true;
         rb.velocity = Vector2.zero;

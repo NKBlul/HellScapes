@@ -38,7 +38,13 @@ public class BaseEnemy : BaseCharacter
     protected override void Die()
     {
         base.Die();
-        
+
         moveSpeed = 0;
+    }
+
+    //Add score when dead animation finished playing
+    public void UpdateScoreWhenDead(int score)
+    {
+        ScoreManager.UpdateScoreText(score);
     }
 }
