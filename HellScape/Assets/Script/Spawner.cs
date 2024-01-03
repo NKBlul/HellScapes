@@ -55,6 +55,7 @@ public class Spawner : MonoBehaviour
     {
         UIManager.Instance.waveText.rectTransform.localPosition = Vector3.zero;
         UIManager.Instance.waveText.rectTransform.localScale = new Vector3(2, 2, 2);
+        totalEnemyThisWave = numOfEnemiesToSpawn; //update total enemy to the new number
         yield return new WaitForSeconds(1.5f);
         ResetWaveText();
         SpawnEnemy(numOfEnemiesToSpawn);
@@ -95,7 +96,6 @@ public class Spawner : MonoBehaviour
 
     private void SpawnEnemy(int numOfEnemiesToSpawn)
     {   
-        totalEnemyThisWave = numOfEnemiesToSpawn; //update total enemy to the new number
         for (int i = 0; i < numOfEnemiesToSpawn; i++) 
         {
             Instantiate(RandomEnemies(), RandomSpawnPoint(), Quaternion.identity); //Spawn random enemy thats not boss, at different spawn point
