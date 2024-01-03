@@ -33,7 +33,7 @@ public class Player : BaseCharacter
     {
         base.Start();
 
-        maxHp = 10f;
+        maxHp = 12f;
         moveSpeed = 5f;
         damage = 3f;
 
