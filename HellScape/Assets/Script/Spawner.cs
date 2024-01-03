@@ -100,14 +100,19 @@ public class Spawner : MonoBehaviour
     }
 
     private void SpawnEnemy(int numOfEnemiesToSpawn)
-    {   
+    {
+        int bossWave = 3;
+        int numOfBossToSpawn = waveNum / bossWave;
         for (int i = 0; i < numOfEnemiesToSpawn; i++) 
         {
             Instantiate(RandomEnemies(), RandomSpawnPoint(), Quaternion.identity); //Spawn random enemy thats not boss, at different spawn point
         }
-        if (waveNum % 3 == 0)
+        if (waveNum % 3 == 0) //every 3 wave summon a boss monster
         {
-            Instantiate(boss, RandomSpawnPoint(), Quaternion.identity); //every 3 wave summon a boss monster
+            for (int i = 0; i < numOfBossToSpawn; i++) //summon extra boss every 3 wave
+            {
+                Instantiate(boss, RandomSpawnPoint(), Quaternion.identity); 
+            }          
         }
         spawnNewWave = false;
     }
