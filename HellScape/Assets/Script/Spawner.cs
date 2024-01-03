@@ -22,6 +22,11 @@ public class Spawner : MonoBehaviour
     private Vector3 initialTextPos;
     private Vector3 initialTextScale;
 
+    private const string BossName = "Orc";
+    private const string EnemyPrefabPath = "Prefab/Enemy";
+    private const int InitialWaveEnemies = 3;
+    private const float TextDisplayTime = 1.5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,12 +35,12 @@ public class Spawner : MonoBehaviour
 
         waveNum = 0;
 
-        enemyPrefabs.AddRange(Resources.LoadAll<GameObject>("Prefab/Enemy"));
+        enemyPrefabs.AddRange(Resources.LoadAll<GameObject>(EnemyPrefabPath));
         //check all gameobject in enemy prefabs,
         foreach(GameObject enemy in enemyPrefabs)
         {
             //if enemy name equals to orc
-            if (enemy.name == "Orc")
+            if (enemy.name == BossName)
             {
                 //set orc to boss
                 boss = enemy;
@@ -48,7 +53,7 @@ public class Spawner : MonoBehaviour
             spawnPoints.Add(child);
         }
 
-        NewEnemyWave(3);
+        NewEnemyWave(InitialWaveEnemies);
     }
 
     private IEnumerator WaveText(int numOfEnemiesToSpawn)
@@ -56,7 +61,7 @@ public class Spawner : MonoBehaviour
         UIManager.Instance.waveText.rectTransform.localPosition = Vector3.zero;
         UIManager.Instance.waveText.rectTransform.localScale = new Vector3(2, 2, 2);
         totalEnemyThisWave = numOfEnemiesToSpawn; //update total enemy to the new number
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(TextDisplayTime);
         ResetWaveText();
         SpawnEnemy(numOfEnemiesToSpawn);
     }
@@ -70,9 +75,9 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       numOfEnemyLeft = GameObject.FindGameObjectsWithTag("Enemy").Length;
-       UIManager.Instance.enemyLeftText.text = numOfEnemyLeft.ToString();
-       UIManager.Instance.progressionBar.fillAmount = Mathf.Lerp(UIManager.Instance.progressionBar.fillAmount, (float)numOfEnemyLeft / totalEnemyThisWave, Time.deltaTime * 5f);
+        numOfEnemyLeft = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        UIManager.Instance.enemyLeftText.text = numOfEnemyLeft.ToString();
+        UIManager.Instance.progressionBar.fillAmount = Mathf.Lerp(UIManager.Instance.progressionBar.fillAmount, (float)numOfEnemyLeft / totalEnemyThisWave, Time.deltaTime * 5f);
 
         if (numOfEnemyLeft == 0 && !spawnNewWave) //if all enemy died
         {
