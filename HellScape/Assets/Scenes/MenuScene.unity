@@ -257,17 +257,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 37726936}
   m_CullTransparentMesh: 1
---- !u!114 &88916999 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1251667976987482050, guid: c7ad53f28993f9d479dd86de15b058ae, type: 3}
-  m_PrefabInstance: {fileID: 1718633084269672116}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1002d41ab014c50448f5e28bafddbdd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &128265137
 GameObject:
   m_ObjectHideFlags: 0
@@ -1080,7 +1069,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 88916999}
+      - m_Target: {fileID: 1251667976987482050, guid: c7ad53f28993f9d479dd86de15b058ae, type: 3}
         m_TargetAssemblyTypeName: ScenesManager, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
@@ -6048,7 +6037,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 88916999}
+      - m_Target: {fileID: 1251667976987482050, guid: c7ad53f28993f9d479dd86de15b058ae, type: 3}
         m_TargetAssemblyTypeName: ScenesManager, Assembly-CSharp
         m_MethodName: PlayGame
         m_Mode: 1

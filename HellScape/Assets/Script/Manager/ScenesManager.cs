@@ -17,7 +17,6 @@ public class ScenesManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
     }
 
     private void LoadScene(string scene)
