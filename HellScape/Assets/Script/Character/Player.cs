@@ -23,6 +23,10 @@ public class Player : BaseCharacter
     private bool dodge = false;
     private float dodgeSpeed = 7f;
 
+    [Header("Fire Rate: ")]
+    public float fireRate = 0.5f; // Adjust this value for the desired fire rate
+    private float nextFireTime;
+
     private void Awake()
     {
         inputActions = new Inputs();
@@ -100,9 +104,10 @@ public class Player : BaseCharacter
 
     private void Shoot()
     {
-        if (inputActions.Player.Shoot.triggered && !dodge)
+        if (inputActions.Player.Shoot.IsPressed() && !dodge && Time.time >= nextFireTime)
         {
             ShootBulletAmount(3);
+            nextFireTime = Time.time + 1f / fireRate; // Calculate next allowed fire time based on fire rate (higher fireRate faster shoot)
         }
     }
 
