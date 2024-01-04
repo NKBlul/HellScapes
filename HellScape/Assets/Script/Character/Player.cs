@@ -13,7 +13,6 @@ public class Player : BaseCharacter
     [SerializeField] private Vector2 mouseInput;
 
     [Header("Shoot: ")]
-    public GameObject bulletPrefab;
     public Transform aim;
     public Transform gunShoot;
     public Transform gun;
@@ -141,9 +140,21 @@ public class Player : BaseCharacter
             bulletRotation *= Quaternion.Euler(0f, 0f, angle);
 
             // Instantiate the bullet with the calculated rotation
-            GameObject bullet = Instantiate(bulletPrefab, gunShoot.position, bulletRotation);
-            Destroy(bullet, 2.0f);
+            GameObject bullet = ObjectPoolManager.instance.GetPooledObject();
+            if (bullet != null)
+            {
+                bullet.transform.position = gunShoot.position;
+                bullet.transform.rotation = bulletRotation;
+                bullet.SetActive(true);
+                StartCoroutine(ReturnBulletToPoolAfter(bullet, 2f));        
+            }          
         }
+    }
+
+    private IEnumerator ReturnBulletToPoolAfter(GameObject bullet, float time)
+    {
+        yield return new WaitForSeconds(time);
+        bullet.SetActive(false);
     }
 
     private void Dodge()
