@@ -27,9 +27,13 @@ public class Spawner : MonoBehaviour
     private const int InitialWaveEnemies = 3;
     private const float TextDisplayTime = 1.5f;
 
+    private Player player;
+
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+
         initialTextPos = UIManager.Instance.waveText.rectTransform.localPosition;
         initialTextScale = UIManager.Instance.waveText.rectTransform.lossyScale;
 
@@ -109,6 +113,11 @@ public class Spawner : MonoBehaviour
         }
         if (waveNum % bossWave == 0) //every 3 wave summon a boss monster
         {
+            //increase number of bullet by 1, and cap it to 3 bullets
+            if (player.numOfBullet != 3)
+            {
+                player.numOfBullet++;
+            }
             for (int i = 0; i < numOfBossToSpawn; i++) //summon extra boss every 3 wave
             {
                 Instantiate(boss, RandomSpawnPoint(), Quaternion.identity); 

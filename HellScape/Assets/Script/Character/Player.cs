@@ -18,14 +18,13 @@ public class Player : BaseCharacter
     public Transform gunShoot;
     public Transform gun;
     public float offset;
+    public float fireRate = 0.5f; // Adjust this value for the desired fire rate
+    private float nextFireTime;
+    public int numOfBullet = 1;
 
     [Header("Dodge: ")]
     private bool dodge = false;
     private float dodgeSpeed = 7f;
-
-    [Header("Fire Rate: ")]
-    public float fireRate = 0.5f; // Adjust this value for the desired fire rate
-    private float nextFireTime;
 
     private void Awake()
     {
@@ -106,7 +105,7 @@ public class Player : BaseCharacter
     {
         if (inputActions.Player.Shoot.IsPressed() && !dodge && Time.time >= nextFireTime)
         {
-            ShootBulletAmount(3);
+            ShootBulletAmount(numOfBullet);
             nextFireTime = Time.time + 1f / fireRate; // Calculate next allowed fire time based on fire rate (higher fireRate faster shoot)
         }
     }
