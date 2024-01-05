@@ -19,6 +19,13 @@ public class Bat : BaseEnemy
     // Update is called once per frame
     protected override void Update()
     {
-        base.Update();
+        base.Update();       
+    }
+
+    protected override void Die()
+    {
+        AudioManager.instance.PlaySFX("Bat_Hit");
+
+        base.Die();
     }
 }

@@ -104,6 +104,7 @@ public class Player : BaseCharacter
     {
         if (inputActions.Player.Shoot.IsPressed() && !dodge && Time.time >= nextFireTime)
         {
+            AudioManager.instance.PlaySFX("Shoot");
             ShootBulletAmount(numOfBullet);
             nextFireTime = Time.time + 1f / fireRate; // Calculate next allowed fire time based on fire rate (higher fireRate faster shoot)
         }

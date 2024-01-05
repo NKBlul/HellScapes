@@ -60,6 +60,18 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 2dff22e3b6074df44afc21323881a2a3, type: 3}
   - name: ButtonPressed
     clip: {fileID: 8300000, guid: 8a7c17bf5e4d2764ea96f643d4219996, type: 3}
+  - name: Shoot
+    clip: {fileID: 8300000, guid: b13b33fbdfc16234a9cb901054f6a1a3, type: 3}
+  - name: Bat_Hit
+    clip: {fileID: 8300000, guid: 444da87870bb28d469755dd9aaaaa995, type: 3}
+  - name: Orc_Hit
+    clip: {fileID: 8300000, guid: e66ae67faa119144885c63544f556edb, type: 3}
+  - name: Goblin_Hit
+    clip: {fileID: 8300000, guid: 27686d37eacc54c4d848e86d04d4c057, type: 3}
+  - name: Troll_Hit
+    clip: {fileID: 8300000, guid: e78102c0d5dec6d4d9b4a4684dde6ca8, type: 3}
+  - name: Enemy_Hit
+    clip: {fileID: 8300000, guid: 668ddd437662ed748854e9629add4f4f, type: 3}
 --- !u!1 &1683949368164161378
 GameObject:
   m_ObjectHideFlags: 0

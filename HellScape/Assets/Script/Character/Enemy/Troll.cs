@@ -21,4 +21,11 @@ public class Troll : BaseEnemy
     {
         base.Update();
     }
+
+    protected override void Die()
+    {
+        AudioManager.instance.PlaySFX("Troll_Hit");
+
+        base.Die();
+    }
 }

@@ -21,4 +21,11 @@ public class Orc : BaseEnemy
     {
         base.Update();
     }
+
+    protected override void Die()
+    {
+        AudioManager.instance.PlaySFX("Orc_Hit");
+
+        base.Die();
+    }
 }

@@ -21,4 +21,11 @@ public class Goblin : BaseEnemy
     {
         base.Update();
     }
+
+    protected override void Die()
+    {
+        base.Die();
+
+        AudioManager.instance.PlaySFX("Goblin_Hit");
+    }
 }

@@ -35,6 +35,13 @@ public class BaseEnemy : BaseCharacter
         }
     }
 
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+
+        AudioManager.instance.PlaySFX("Enemy_Hit");
+    }
+
     protected override void Die()
     {
         base.Die();

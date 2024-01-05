@@ -8,4 +8,27 @@ Font:
 ============== SIL Open Font License (OFL) ==============
 Connection Serif - by KinecticPlasma Fonts, https://www.fontspace.com/connection-serif-font-f26406
 
+Audio:
+Music:
+https://www.youtube.com/watch?v=Wth5wynwxq0&ab_channel=PandaBeats-NoCopyrightMusic
+(menu music)
+
+https://www.youtube.com/watch?v=hrgzWEgCCFg&ab_channel=FreeMusic
+(end music)
+
+https://www.youtube.com/watch?v=eMzUhVOOvnI&ab_channel=White_Records-Topic
+(game music)
+
+SFX:
+https://www.youtube.com/watch?v=LlWUElLzxCk&ab_channel=SoundMasters
+(button pressed)
+
+https://mixkit.co/free-sound-effects/gun/
+(shoot) (Game gun shot)
+
+https://www.youtube.com/watch?v=JcG_ugrzfHE&ab_channel=r0dg
+(enemy hit)
+
+https://sfbgames.itch.io/chiptone
+(enemy dead)
 
