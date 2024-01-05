@@ -188,6 +188,7 @@ public class Player : BaseCharacter
         if (other.gameObject.CompareTag("Enemy"))
         {
             AudioManager.instance.PlayMusic("Lose");
+            col.enabled = false;
             aim.gameObject.SetActive(false);
             Timer.instance.isCounting = false;        
             PlayDeadAnim();

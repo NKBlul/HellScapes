@@ -314,11 +314,12 @@ MonoBehaviour:
   animator: {fileID: 0}
   moveInput: {x: 0, y: 0}
   mouseInput: {x: 0, y: 0}
-  bulletPrefab: {fileID: 324318829828314069, guid: b65f8df5708db7246a13c4a51ddb9d79, type: 3}
   aim: {fileID: 4991175390252367402}
   gunShoot: {fileID: 1728421917887857883}
   gun: {fileID: 6936386917410145706}
   offset: 180
+  fireRate: 1.5
+  numOfBullet: 1
 --- !u!1 &7407989375305560277
 GameObject:
   m_ObjectHideFlags: 0
