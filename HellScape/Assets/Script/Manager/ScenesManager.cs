@@ -21,7 +21,6 @@ public class ScenesManager : MonoBehaviour
 
     private void LoadScene(string scene)
     {
-        //PlayButtonPressedAudio();
         SceneManager.LoadScene(scene);
     }
 
@@ -37,7 +36,6 @@ public class ScenesManager : MonoBehaviour
 
     public void QuitGame()
     {
-        //PlayButtonPressedAudio();
         Application.Quit();
     }
 
