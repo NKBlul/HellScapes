@@ -48,7 +48,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 3371097154946814256}
   sfxSource: {fileID: 5850168950803031274}
-  music: []
+  music:
+  - name: Menu
+    clip: {fileID: 8300000, guid: 550fc641c49f02945829be43fee3cc70, type: 3}
+  - name: Game
+    clip: {fileID: 8300000, guid: 256223e5dcadd704eac739604fc574f7, type: 3}
+  - name: Lose
+    clip: {fileID: 8300000, guid: 1263a19df73cbb04db971ee2b19c637b, type: 3}
   sfx:
   - name: ButtonHover
     clip: {fileID: 8300000, guid: 2dff22e3b6074df44afc21323881a2a3, type: 3}

@@ -53,11 +53,11 @@ public class ScenesManager : MonoBehaviour
     {
         if (scene.name == "MenuScene")
         {
-
+            AudioManager.instance.PlayMusic("Menu");
         }
         else if (scene.name == "GameScene")
         {
-
+            AudioManager.instance.PlayMusic("Game");
         }
     }
 }
