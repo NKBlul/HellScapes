@@ -35,7 +35,7 @@ public class Spawner : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
         initialTextPos = UIManager.Instance.waveText.rectTransform.localPosition;
-        initialTextScale = UIManager.Instance.waveText.rectTransform.lossyScale;
+        initialTextScale = UIManager.Instance.waveText.rectTransform.localScale;
 
         waveNum = 0;
 
