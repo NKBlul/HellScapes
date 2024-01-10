@@ -25,6 +25,8 @@ public class Player : BaseCharacter
     private bool dodge = false;
     private float dodgeSpeed = 7f;
 
+    ParticleController particleController;
+
     private void Awake()
     {
         inputActions = new Inputs();
@@ -40,6 +42,8 @@ public class Player : BaseCharacter
         damage = 3f;
 
         currentHp = maxHp;
+
+        particleController = GetComponentInChildren<ParticleController>();
     }
 
 
@@ -165,6 +169,7 @@ public class Player : BaseCharacter
             aim.gameObject.SetActive(false);
             dodge = true;
             col.enabled = false;
+            particleController.PlayDodgeParticle();
         }
     }
 
