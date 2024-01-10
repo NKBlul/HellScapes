@@ -24,6 +24,8 @@ public class Player : BaseCharacter
     [Header("Dodge: ")]
     private bool dodge = false;
     private float dodgeSpeed = 7f;
+    [SerializeField] LayerMask enemyLayer;
+    [SerializeField] LayerMask nothing;
 
     ParticleController particleController;
 
@@ -183,7 +185,10 @@ public class Player : BaseCharacter
     private IEnumerator ReturnBulletToPoolAfter(GameObject bullet, float time)
     {
         yield return new WaitForSeconds(time);
-        bullet.SetActive(false);
+        if (bullet != null && bullet.activeSelf)
+        {
+            bullet.SetActive(false);
+        }
     }
 
     private void Dodge()
@@ -192,7 +197,7 @@ public class Player : BaseCharacter
         {
             aim.gameObject.SetActive(false);
             dodge = true;
-            col.enabled = false;
+            col.excludeLayers = enemyLayer;
             particleController.PlayDodgeParticle();
         }
     }
@@ -253,7 +258,7 @@ public class Player : BaseCharacter
     {
         aim.gameObject.SetActive(true);
         dodge = false;
-        col.enabled = true;
+        col.excludeLayers = nothing;
         rb.velocity = Vector2.zero;
     }
 
