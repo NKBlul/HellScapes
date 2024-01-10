@@ -6,6 +6,14 @@ public class Bullet : MonoBehaviour
 {
     public float speed;
     float damage;
+    [SerializeField] Animator animator;
+    [SerializeField] Collider2D col;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+        col = GetComponent<Collider2D>();
+    }
 
     private void Start()
     {
@@ -23,7 +31,18 @@ public class Bullet : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             other.GetComponent<BaseEnemy>().TakeDamage(damage);
-            gameObject.SetActive(false);
+            animator.Play("Bullet_Explode");
         }
+    }
+
+    public void DisableCol()
+    {
+        col.enabled = false; 
+    }
+
+    public void ReturnBulletToPool()
+    {
+        col.enabled = true;
+        gameObject.SetActive(false);
     }
 }
