@@ -110,7 +110,6 @@ public class Player : BaseCharacter
         {
             AudioManager.instance.PlaySFX("Shoot");
             ShootBulletAmount(numOfBullet);
-            nextFireTime = Time.time + 1f / fireRate; // Calculate next allowed fire time based on fire rate (higher fireRate faster shoot)
         }
     }
 
@@ -134,26 +133,51 @@ public class Player : BaseCharacter
 
     private void ShootBulletAmount(int amount)
     {
-        for (int i = 0; i < amount; i++)
+        if (amount % 2 != 0) // odd
         {
-            // Calculate rotation based on the player's gunShoot rotation
-            Quaternion bulletRotation = gunShoot.rotation;
-
-            // Adjust the rotation based on the loop index and total bullet count
-            float angleOffset = (amount - 1) * 22.5f; // Half of the total angle spread
-            float angle = (i * 45f) - angleOffset;
-            bulletRotation *= Quaternion.Euler(0f, 0f, angle);
-
-            // Instantiate the bullet with the calculated rotation
-            GameObject bullet = ObjectPoolManager.instance.GetPooledObject();
-            if (bullet != null)
+            for (int i = 0; i < amount; i++) //spread shot
             {
-                bullet.transform.position = gunShoot.position;
-                bullet.transform.rotation = bulletRotation;
-                bullet.SetActive(true);
-                StartCoroutine(ReturnBulletToPoolAfter(bullet, 2f));        
-            }          
+                GameObject bullet = ObjectPoolManager.instance.GetPooledObject();
+
+                // Calculate rotation based on the player's gunShoot rotation
+                Quaternion bulletRotation = gunShoot.rotation;
+
+                // Adjust the rotation based on the loop index and total bullet count
+                float angleOffset = (amount - 1) * 22.5f; // Half of the total angle spread
+                float angle = (i * 45f) - angleOffset;
+                bulletRotation *= Quaternion.Euler(0f, 0f, angle);
+
+                // Instantiate the bullet with the calculated rotation 
+                if (bullet != null)
+                {
+                    bullet.transform.position = gunShoot.position;
+                    bullet.transform.rotation = bulletRotation;
+                    bullet.SetActive(true);
+                    StartCoroutine(ReturnBulletToPoolAfter(bullet, 2f));
+                }
+            }
         }
+        else //even
+        {
+            for (int i = 0; i < amount; i++)
+            {
+                // Instantiate a new bullet for each iteration
+                GameObject bullet = ObjectPoolManager.instance.GetPooledObject();
+
+                Vector2 newBulletStartPos = new Vector2(gunShoot.position.x, gunShoot.position.y + 0.15f);
+                Vector2 newBulletPos = new Vector2(gunShoot.position.x, newBulletStartPos.y - 0.3f * i);
+
+                // Instantiate the bullet with the calculated position
+                if (bullet != null)
+                {
+                    bullet.transform.position = newBulletPos;
+                    bullet.transform.rotation = gunShoot.rotation;
+                    bullet.SetActive(true);
+                    StartCoroutine(ReturnBulletToPoolAfter(bullet, 2f));
+                }
+            }
+        }
+        nextFireTime = Time.time + 1f / fireRate; // Calculate next allowed fire time based on fire rate (higher fireRate faster shoot)
     }
 
     private IEnumerator ReturnBulletToPoolAfter(GameObject bullet, float time)
