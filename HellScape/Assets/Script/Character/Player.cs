@@ -16,6 +16,7 @@ public class Player : BaseCharacter
     public Transform aim;
     public Transform gunShoot;
     public Transform gun;
+    public GameObject muzzle;
     public float offset;
     public float fireRate = 0.5f; // Adjust this value for the desired fire rate
     private float nextFireTime;
@@ -111,8 +112,16 @@ public class Player : BaseCharacter
         if (inputActions.Player.Shoot.IsPressed() && !dodge && Time.time >= nextFireTime)
         {
             AudioManager.instance.PlaySFX("Shoot");
+            muzzle.gameObject.SetActive(true);
             ShootBulletAmount(numOfBullet);
+            StartCoroutine(DisableMuzzle());
         }
+    }
+
+    IEnumerator DisableMuzzle()
+    {
+        yield return new WaitForSeconds(0.5f);
+        muzzle.gameObject.SetActive(false);
     }
 
     private void PauseGame()
