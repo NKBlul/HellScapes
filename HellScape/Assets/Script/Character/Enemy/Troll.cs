@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Troll : BaseEnemy
 {
+    private bool isRegenHp;
+    [SerializeField]private float regenCooldown = 2f;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -20,6 +23,20 @@ public class Troll : BaseEnemy
     protected override void Update()
     {
         base.Update();
+
+        if (currentHp != maxHp && !isRegenHp)
+        {
+            StartCoroutine(RegenHp());        
+        }
+    }
+
+    IEnumerator RegenHp()
+    {
+        isRegenHp = true;
+        yield return new WaitForSeconds(regenCooldown);
+        currentHp += 2;
+        currentHp = Mathf.Min(currentHp, maxHp);
+        isRegenHp = false;
     }
 
     protected override void Die()

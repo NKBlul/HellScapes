@@ -196,3 +196,4 @@ MonoBehaviour:
   rb: {fileID: 0}
   col: {fileID: 0}
   animator: {fileID: 0}
+  bomb: {fileID: 1967111735125492007, guid: 92331034798b2964a97a5c37189b1175, type: 3}

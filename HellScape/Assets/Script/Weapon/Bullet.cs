@@ -34,6 +34,7 @@ public class Bullet : MonoBehaviour
         {
             animator.Play("Bullet_Explode");
             other.GetComponent<BaseEnemy>().TakeDamage(damage);
+            Debug.Log($"{other.gameObject.name} hp: {other.GetComponent<BaseEnemy>().GetHP()}");
             rb.velocity = Vector2.zero;
         }
     }
