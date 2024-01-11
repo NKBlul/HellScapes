@@ -9,7 +9,7 @@ public class Troll : BaseEnemy
     {
         base.Start();
 
-        maxHp = 9f;
+        maxHp = 8f;
         moveSpeed = 2f;
         damage = 2f;
 

@@ -161,6 +161,7 @@ public class Player : BaseCharacter
                 // Instantiate the bullet with the calculated rotation 
                 if (bullet != null)
                 {
+                    bullet.GetComponent<Collider2D>().enabled = true;
                     bullet.transform.position = gunShoot.position;
                     bullet.transform.rotation = bulletRotation;
                     bullet.SetActive(true);
@@ -181,6 +182,7 @@ public class Player : BaseCharacter
                 // Instantiate the bullet with the calculated position
                 if (bullet != null)
                 {
+                    bullet.GetComponent<Collider2D>().enabled = true;
                     bullet.transform.position = newBulletPos;
                     bullet.transform.rotation = gunShoot.rotation;
                     bullet.SetActive(true);

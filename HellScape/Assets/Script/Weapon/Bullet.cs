@@ -32,8 +32,8 @@ public class Bullet : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            other.GetComponent<BaseEnemy>().TakeDamage(damage);
             animator.Play("Bullet_Explode");
+            other.GetComponent<BaseEnemy>().TakeDamage(damage);
             rb.velocity = Vector2.zero;
         }
     }
