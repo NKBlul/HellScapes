@@ -22,10 +22,10 @@ public class Spawner : MonoBehaviour
     private Vector3 initialTextPos;
     private Vector3 initialTextScale;
 
-    private const string BossName = "Orc";
-    private const string EnemyPrefabPath = "Prefab/Enemy";
-    private const int InitialWaveEnemies = 3;
-    private const float TextDisplayTime = 1.5f;
+    private const string bossName = "Orc";
+    private const string enemyPrefabPath = "Prefab/Enemy";
+    private const int initialWaveEnemies = 3;
+    private const float textDisplayTime = 1.5f;
 
     private Player player;
 
@@ -39,12 +39,12 @@ public class Spawner : MonoBehaviour
 
         waveNum = 0;
 
-        enemyPrefabs.AddRange(Resources.LoadAll<GameObject>(EnemyPrefabPath));
+        enemyPrefabs.AddRange(Resources.LoadAll<GameObject>(enemyPrefabPath));
         //check all gameobject in enemy prefabs,
         foreach(GameObject enemy in enemyPrefabs)
         {
             //if enemy name equals to orc
-            if (enemy.name == BossName)
+            if (enemy.name == bossName)
             {
                 //set orc to boss
                 boss = enemy;
@@ -57,17 +57,17 @@ public class Spawner : MonoBehaviour
             spawnPoints.Add(child);
         }
 
-        NewEnemyWave(InitialWaveEnemies);
+        NewEnemyWave(initialWaveEnemies);
     }
 
     private IEnumerator WaveText(int numOfEnemiesToSpawn)
     {
-        UIManager.Instance.waveText.rectTransform.localPosition = Vector3.zero;
-        UIManager.Instance.waveText.rectTransform.localScale = new Vector3(2, 2, 2);
+        UIManager.Instance.waveText.rectTransform.localPosition = Vector3.zero; //set to middle
+        UIManager.Instance.waveText.rectTransform.localScale = new Vector3(2, 2, 2); //scale to make it look cool
         totalEnemyThisWave = numOfEnemiesToSpawn; //update total enemy to the new number
-        yield return new WaitForSeconds(TextDisplayTime);
-        ResetWaveText();
-        SpawnEnemy(numOfEnemiesToSpawn);
+        yield return new WaitForSeconds(textDisplayTime);
+        ResetWaveText(); //reset position
+        SpawnEnemy(numOfEnemiesToSpawn);//spawn after reseting
     }
 
     private void ResetWaveText()
@@ -91,13 +91,13 @@ public class Spawner : MonoBehaviour
 
     Vector3 RandomSpawnPoint()
     {
-        Transform randomSpawn = spawnPoints[Random.Range(0, spawnPoints.Count)];
+        Transform randomSpawn = spawnPoints[Random.Range(0, spawnPoints.Count)]; // spawn randomly from all spawnpoints
         return randomSpawn.position;
     }
 
     GameObject RandomEnemies()
     {
-        //get all gameobject from list of enemy prefabs, selecsts all that is not boss and add it to a list
+        //get all gameobject from list of enemy prefabs, selects all that is not boss and add it to a list
         List<GameObject> minions = enemyPrefabs.Where(enemy => enemy != boss).ToList(); 
         GameObject randomEnemySpawn = minions[Random.Range(0, minions.Count)];
         return randomEnemySpawn;
@@ -106,7 +106,7 @@ public class Spawner : MonoBehaviour
     private void SpawnEnemy(int numOfEnemiesToSpawn)
     {
         int bossWave = 3;
-        int numOfBossToSpawn = waveNum / bossWave;
+        int numOfBossToSpawn = waveNum / bossWave; //calculate the wavenum / 3 and spawn as many boss (e.g. round 3, 1 boss. round 6, 2 boss)
         for (int i = 0; i < numOfEnemiesToSpawn; i++) 
         {
             Instantiate(RandomEnemies(), RandomSpawnPoint(), Quaternion.identity); //Spawn random enemy thats not boss, at different spawn point
