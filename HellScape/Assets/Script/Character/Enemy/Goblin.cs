@@ -32,7 +32,7 @@ public class Goblin : BaseEnemy
         base.Die();
     }
 
-    private void SpawnBomb(int numOfBomb)
+    public void SpawnBomb(int numOfBomb)
     {
         float xOffset = 1f;
         float yOffset = 1f;

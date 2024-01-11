@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Orc : BaseEnemy
 {
+    Spawner spawner;
+
     // Start is called before the first frame update
     protected override void Start()
     {
+        spawner = GameObject.Find("Spawner").GetComponent<Spawner>();
+
         base.Start();
 
         maxHp = 21f;
@@ -27,5 +31,11 @@ public class Orc : BaseEnemy
         AudioManager.instance.PlaySFX("Orc_Hit");
 
         base.Die();
+    }
+
+    public void SpawnEnemyOnDead(int numOfMinion)
+    {
+        spawner.SpawnMinion(numOfMinion, transform.position);
+        spawner.totalEnemyThisWave += numOfMinion;
     }
 }

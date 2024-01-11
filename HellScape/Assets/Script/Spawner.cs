@@ -16,7 +16,7 @@ public class Spawner : MonoBehaviour
     private int waveNum;
     private int enemyToSpawn;
     private int numOfEnemyLeft;
-    private int totalEnemyThisWave;
+    public int totalEnemyThisWave;
     private bool spawnNewWave;
 
     private Vector3 initialTextPos;
@@ -107,13 +107,13 @@ public class Spawner : MonoBehaviour
     {
         int bossWave = 3;
         int numOfBossToSpawn = waveNum / bossWave; //calculate the wavenum / 3 and spawn as many boss (e.g. round 3, 1 boss. round 6, 2 boss)
-        for (int i = 0; i < numOfEnemiesToSpawn; i++) 
+        for (int i = 0; i < numOfEnemiesToSpawn; i++)
         {
             Instantiate(RandomEnemies(), RandomSpawnPoint(), Quaternion.identity); //Spawn random enemy thats not boss, at different spawn point
         }
         if (waveNum % bossWave == 0) //every 3 wave summon a boss monster
         {
-            //increase number of bullet by 1, and cap it to 3 bullets
+            //increase number of bullet by 1, and cap it to 3 bullets every 3 wave
             if (player.numOfBullet != 3)
             {
                 player.numOfBullet++;
@@ -124,6 +124,14 @@ public class Spawner : MonoBehaviour
             }          
         }
         spawnNewWave = false;
+    }
+
+    public void SpawnMinion(int numOfEnemiesToSpawn, Vector3 spawnPoint)
+    {
+        for (int i = 0; i < numOfEnemiesToSpawn; i++)
+        {
+            Instantiate(RandomEnemies(), spawnPoint, Quaternion.identity); //Spawn random enemy thats not boss, at different spawn point
+        }
     }
 
     private void NewEnemyWave(int numOfEnemiesToSpawn)

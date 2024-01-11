@@ -366,3 +366,10 @@ AnimationClip:
     floatParameter: 0
     intParameter: 10
     messageOptions: 0
+  - time: 0.23076923
+    functionName: SpawnEnemyOnDead
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 2
+    messageOptions: 0
