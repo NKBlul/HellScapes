@@ -8,11 +8,13 @@ public class Bullet : MonoBehaviour
     float damage;
     [SerializeField] Animator animator;
     [SerializeField] Collider2D col;
+    [SerializeField] Rigidbody2D rb;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         col = GetComponent<Collider2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
@@ -32,6 +34,7 @@ public class Bullet : MonoBehaviour
         {
             other.GetComponent<BaseEnemy>().TakeDamage(damage);
             animator.Play("Bullet_Explode");
+            rb.velocity = Vector2.zero;
         }
     }
 
