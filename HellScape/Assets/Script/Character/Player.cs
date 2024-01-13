@@ -233,14 +233,19 @@ public class Player : BaseCharacter
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            AudioManager.instance.PlayMusic("Lose");
-            col.enabled = false;
-            aim.gameObject.SetActive(false);
-            Timer.instance.isCounting = false;        
-            PlayDeadAnim();
-            SetAllEnemySpeed(0f);
-            OnDisable();         
+            PlayerDead();
         }
+    }
+
+    private void PlayerDead()
+    {
+        AudioManager.instance.PlayMusic("Lose");
+        col.enabled = false;
+        aim.gameObject.SetActive(false);
+        Timer.instance.isCounting = false;
+        PlayDeadAnim();
+        SetAllEnemySpeed(0f);
+        OnDisable();
     }
 
     public void OnDie()
@@ -248,6 +253,17 @@ public class Player : BaseCharacter
         UIManager.Instance.losePanel.SetActive(true);
         UIManager.Instance.loseScore.text = $"Score: {ScoreManager.score.ToString()}";
         UIManager.Instance.loseTimer.text = UIManager.Instance.timerText.text;
+    }
+
+    protected override void Die()
+    {
+        AudioManager.instance.PlayMusic("Lose");
+        col.enabled = false;
+        aim.gameObject.SetActive(false);
+        Timer.instance.isCounting = false;
+        base.Die();
+        SetAllEnemySpeed(0f);
+        OnDisable();
     }
 
     public void OnEnable()
