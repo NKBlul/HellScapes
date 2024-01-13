@@ -10,6 +10,7 @@ public class Bomb : MonoBehaviour
     Color endColor = Color.red;
     float timeTillExplode = 2f;
     float explodeRadius = 1f;
+    bool isExploding = false;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,7 @@ public class Bomb : MonoBehaviour
             yield return null;
         }
         spriteRenderer.color = endColor;
+        isExploding = true;
         Explode();
     }
 
@@ -49,6 +51,14 @@ public class Bomb : MonoBehaviour
                     player.TakeDamage(player.GetHP());
                 }
             }
+        }
+    }
+
+    private void Update()
+    {
+        if (!explosiveParticle.isPlaying && isExploding)
+        {
+            Destroy(gameObject);
         }
     }
 

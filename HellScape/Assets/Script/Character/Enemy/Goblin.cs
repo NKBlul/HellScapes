@@ -27,7 +27,7 @@ public class Goblin : BaseEnemy
     protected override void Die()
     {
         AudioManager.instance.PlaySFX("Goblin_Hit");
-        //SpawnBomb(4);
+        SpawnBomb(4);
 
         base.Die();
     }
