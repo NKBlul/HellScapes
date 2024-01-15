@@ -109,13 +109,16 @@ public class Player : BaseCharacter
 
     private void Shoot()
     {
-        if (inputActions.Player.Shoot.IsPressed() && !dodge && Time.time >= nextFireTime)
+        if (Time.time >= nextFireTime)
         {
-            AudioManager.instance.PlaySFX("Shoot");
-            muzzle.gameObject.SetActive(true);
-            ShootBulletAmount(numOfBullet);
-            StartCoroutine(DisableMuzzle());
-        }
+            if (inputActions.Player.Shoot.IsPressed() && !dodge)
+            {
+                AudioManager.instance.PlaySFX("Shoot");
+                muzzle.gameObject.SetActive(true);
+                ShootBulletAmount(numOfBullet);
+                StartCoroutine(DisableMuzzle());
+            }
+        }   
     }
 
     IEnumerator DisableMuzzle()
