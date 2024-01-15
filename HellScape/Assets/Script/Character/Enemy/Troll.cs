@@ -6,6 +6,7 @@ public class Troll : BaseEnemy
 {
     private bool isRegenHp;
     [SerializeField]private float regenCooldown = 2f;
+    public ParticleSystem regenParticle;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -34,6 +35,7 @@ public class Troll : BaseEnemy
     {
         isRegenHp = true;
         yield return new WaitForSeconds(regenCooldown);
+        regenParticle.Play();
         currentHp += 2;
         currentHp = Mathf.Min(currentHp, maxHp);
         isRegenHp = false;
