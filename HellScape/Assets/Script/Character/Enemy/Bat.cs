@@ -19,7 +19,13 @@ public class Bat : BaseEnemy
     // Update is called once per frame
     protected override void Update()
     {
-        base.Update();       
+        base.Update();   
+        
+        if (IsAnimationFinished("Bat_Dead"))
+        {
+            UpdateScoreWhenDead(5);
+            FinishDeadAnim();
+        }
     }
 
     protected override void Die()

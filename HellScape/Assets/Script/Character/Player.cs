@@ -168,7 +168,7 @@ public class Player : BaseCharacter
                     bullet.transform.position = gunShoot.position;
                     bullet.transform.rotation = bulletRotation;
                     bullet.SetActive(true);
-                    StartCoroutine(ReturnBulletToPoolAfter(bullet, 2f));
+                    ObjectPoolManager.instance.ReturnBulletToPool(bullet, 2f);
                 }
             }
         }
@@ -189,20 +189,11 @@ public class Player : BaseCharacter
                     bullet.transform.position = newBulletPos;
                     bullet.transform.rotation = gunShoot.rotation;
                     bullet.SetActive(true);
-                    StartCoroutine(ReturnBulletToPoolAfter(bullet, 2f));
+                    ObjectPoolManager.instance.ReturnBulletToPool(bullet, 2f);
                 }
             }
         }
         nextFireTime = Time.time + 1f / fireRate; // Calculate next allowed fire time based on fire rate (higher fireRate faster shoot)
-    }
-
-    private IEnumerator ReturnBulletToPoolAfter(GameObject bullet, float time)
-    {
-        yield return new WaitForSeconds(time);
-        if (bullet != null && bullet.activeSelf)
-        {
-            bullet.SetActive(false);
-        }
     }
 
     private void Dodge()

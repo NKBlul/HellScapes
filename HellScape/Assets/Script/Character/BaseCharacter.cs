@@ -66,4 +66,15 @@ public class BaseCharacter : MonoBehaviour
             enemy.moveSpeed = speed;
         }
     }
+
+    protected bool IsAnimationFinished(string animationName)
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName(animationName))
+        {
+            // Check if the normalizedTime is greater than or equal to 1
+            return animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f;
+        }
+
+        return false;
+    }
 }

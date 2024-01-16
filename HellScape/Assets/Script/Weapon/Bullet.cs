@@ -26,15 +26,20 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.right * speed * Time.deltaTime);
+
+        if (IsAnimationFinished("Bullet_Explode"))
+        {
+            ObjectPoolManager.instance.ReturnBulletToPool(gameObject, 0f);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
         {
-            animator.Play("Bullet_Explode");
             other.GetComponent<BaseEnemy>().TakeDamage(damage);
-            Debug.Log($"{other.gameObject.name} hp: {other.GetComponent<BaseEnemy>().GetHP()}");
+            animator.Play("Bullet_Explode");
+            col.enabled = false;
             rb.velocity = Vector2.zero;
         }
     }
@@ -44,9 +49,14 @@ public class Bullet : MonoBehaviour
         col.enabled = false; 
     }
 
-    public void ReturnBulletToPool()
+    bool IsAnimationFinished(string animationName)
     {
-        col.enabled = true;
-        gameObject.SetActive(false);
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName(animationName))
+        {
+            // Check if the normalizedTime is greater than or equal to 1
+            return animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f;
+        }
+
+        return false;
     }
 }

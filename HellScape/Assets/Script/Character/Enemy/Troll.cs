@@ -25,6 +25,12 @@ public class Troll : BaseEnemy
     {
         base.Update();
 
+        if (IsAnimationFinished("Troll_Dead"))
+        {
+            UpdateScoreWhenDead(5);
+            FinishDeadAnim();
+        }
+
         if (currentHp != maxHp && !isRegenHp)
         {
             StartCoroutine(RegenHp());        

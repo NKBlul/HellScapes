@@ -24,6 +24,13 @@ public class Orc : BaseEnemy
     protected override void Update()
     {
         base.Update();
+
+        if (IsAnimationFinished("Orc_Dead"))
+        {
+            UpdateScoreWhenDead(10);
+            SpawnEnemyOnDead(2);
+            FinishDeadAnim();
+        }
     }
 
     protected override void Die()

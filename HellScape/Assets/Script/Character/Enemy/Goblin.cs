@@ -22,6 +22,12 @@ public class Goblin : BaseEnemy
     protected override void Update()
     {
         base.Update();
+
+        if (IsAnimationFinished("Goblin_Dead"))
+        {
+            UpdateScoreWhenDead(5);
+            FinishDeadAnim();
+        }
     }
 
     protected override void Die()

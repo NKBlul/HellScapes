@@ -7,7 +7,7 @@ public class ObjectPoolManager : MonoBehaviour
     public static ObjectPoolManager instance;
 
     private List<GameObject> pooledObjects = new List<GameObject>();
-    private int pooledAmount = 10;
+    private int pooledAmount = 20;
 
     [SerializeField] private GameObject bulletPrefab;
 
@@ -32,11 +32,29 @@ public class ObjectPoolManager : MonoBehaviour
         {
             if (!pooledObjects[i].activeInHierarchy)
             {
+                // Reset bullet state before returning
+                pooledObjects[i].transform.position = Vector3.zero;
+                pooledObjects[i].transform.rotation = Quaternion.identity;
+
                 pooledObjects[i].SetActive(true);
                 return pooledObjects[i];
             }
         }
 
         return null;
+    }
+
+    public void ReturnBulletToPool(GameObject bullet, float time)
+    {
+        StartCoroutine(ReturnBulletToPoolAfter(bullet, time));
+    }
+
+    private IEnumerator ReturnBulletToPoolAfter(GameObject bullet, float time)
+    {
+        yield return new WaitForSeconds(time);
+        if (bullet != null && bullet.activeSelf)
+        {
+            bullet.SetActive(false);
+        }
     }
 }
