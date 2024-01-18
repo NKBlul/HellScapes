@@ -29,7 +29,7 @@ public class Bullet : MonoBehaviour
 
         if (IsAnimationFinished("Bullet_Explode"))
         {
-            ObjectPoolManager.instance.ReturnBulletToPool(gameObject, 0f);
+            ObjectPoolManager.instance.ReturnBulletToPool(gameObject);
         }
     }
 

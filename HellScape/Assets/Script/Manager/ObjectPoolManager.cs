@@ -44,7 +44,7 @@ public class ObjectPoolManager : MonoBehaviour
         return null;
     }
 
-    public void ReturnBulletToPool(GameObject bullet, float time)
+    public void ReturnBulletToPool(GameObject bullet, float time = 0f)
     {
         StartCoroutine(ReturnBulletToPoolAfter(bullet, time));
     }
