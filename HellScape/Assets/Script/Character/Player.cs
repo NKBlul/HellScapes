@@ -200,6 +200,7 @@ public class Player : BaseCharacter
     {
         if (inputActions.Player.Dodge.triggered && !dodge)
         {
+            AudioManager.instance.PlaySFX("Player_Dodge");
             aim.gameObject.SetActive(false);
             dodge = true;
             col.excludeLayers = enemyLayer;

@@ -41,6 +41,7 @@ public class Troll : BaseEnemy
     {
         isRegenHp = true;
         yield return new WaitForSeconds(regenCooldown);
+        AudioManager.instance.PlaySFX("Troll_Regen");
         regenParticle.Play();
         currentHp += 2;
         currentHp = Mathf.Min(currentHp, maxHp);

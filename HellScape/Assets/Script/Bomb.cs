@@ -20,6 +20,7 @@ public class Bomb : MonoBehaviour
 
     IEnumerator ChangeColor(Color startColor, Color endColor, float timeToChange)
     {
+        AudioManager.instance.PlaySFX("Bomb_Ignite");
         float elapsedTime = 0f;
         while (elapsedTime < timeToChange) 
         {
@@ -37,6 +38,7 @@ public class Bomb : MonoBehaviour
 
     private void Explode()
     {
+        AudioManager.instance.PlaySFX("Bomb_Explode");
         spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0f);
         explosiveParticle.Play();
 
