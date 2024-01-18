@@ -242,6 +242,16 @@ public class Player : BaseCharacter
         OnDisable();
     }
 
+    public void ChangePlayerSpeed(float newSpeed)
+    {
+        moveSpeed = newSpeed;
+    }
+
+    public void ResetPlayerSpeed()
+    {
+        moveSpeed = 5f;
+    }
+
     public void OnDie()
     {
         UIManager.Instance.losePanel.SetActive(true);

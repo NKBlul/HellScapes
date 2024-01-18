@@ -37,6 +37,7 @@ public class Bomb : MonoBehaviour
 
     private void Explode()
     {
+        spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0f);
         explosiveParticle.Play();
 
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explodeRadius);

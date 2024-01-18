@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Bat : BaseEnemy
 {
+    [SerializeField] GameObject snowOrb;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -24,8 +26,14 @@ public class Bat : BaseEnemy
         if (IsAnimationFinished("Bat_Dead"))
         {
             UpdateScoreWhenDead(5);
+            SpawnSlowOrb();
             FinishDeadAnim();
         }
+    }
+
+    private void SpawnSlowOrb()
+    {
+        Instantiate(snowOrb, transform.position, Quaternion.identity);
     }
 
     protected override void Die()

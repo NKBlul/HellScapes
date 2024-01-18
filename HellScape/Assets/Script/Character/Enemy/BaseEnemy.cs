@@ -18,13 +18,18 @@ public class BaseEnemy : BaseCharacter
     // Update is called once per frame
     protected virtual void Update()
     {
-        MoveToPlayer();
+        MoveToPlayer(player);
     }
 
-    private void MoveToPlayer()
+    private void MoveToPlayer(Transform player)
     {
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
 
+        AdjustEnemyLook(player);
+    }
+
+    protected void AdjustEnemyLook(Transform player)
+    {
         if (transform.position.x < player.position.x) //enemy on the left
         {
             transform.localScale = defaultScale;
