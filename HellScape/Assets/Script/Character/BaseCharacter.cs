@@ -8,6 +8,7 @@ public class BaseCharacter : MonoBehaviour
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public Collider2D col;
     [HideInInspector] public Animator animator;
+    [HideInInspector] public SpriteRenderer spriteRenderer;
 
     [Header("Stats:")]
     protected float maxHp;
@@ -21,6 +22,7 @@ public class BaseCharacter : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public virtual void TakeDamage(float damage)
@@ -41,16 +43,6 @@ public class BaseCharacter : MonoBehaviour
     public void PlayDeadAnim()
     {
         animator.SetTrigger("Dead");
-    }
-
-    public float GetHP()
-    {
-        return currentHp;
-    }
-
-    public float GetDamage()
-    {
-        return damage;
     }
 
     public void FinishDeadAnim()
@@ -76,5 +68,21 @@ public class BaseCharacter : MonoBehaviour
         }
 
         return false;
+    }
+
+    public float GetHP()
+    {
+        return currentHp;
+    }
+
+    public float GetDamage()
+    {
+        return damage;
+    }
+
+    public void SetColor(Color32 color)
+    {
+        spriteRenderer.color = color;
+        Debug.Log(spriteRenderer.color);
     }
 }
