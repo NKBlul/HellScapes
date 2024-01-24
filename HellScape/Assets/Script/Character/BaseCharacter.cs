@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BaseCharacter : MonoBehaviour
@@ -82,7 +83,8 @@ public class BaseCharacter : MonoBehaviour
 
     public void SetColor(Color32 color)
     {
-        spriteRenderer.color = color;
-        Debug.Log(spriteRenderer.color);
+        color.a = 255;
+        spriteRenderer.material.color = color;
+        Debug.Log("Player Color: " + spriteRenderer.color.ToHexString());
     }
 }

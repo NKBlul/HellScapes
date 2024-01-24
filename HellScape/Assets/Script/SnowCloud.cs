@@ -42,7 +42,7 @@ public class SnowCloud : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             other.GetComponent<Player>().ResetPlayerSpeed();
-            //other.GetComponent<Player>().SetColor(new Color32(255, 255, 255, 255));
+            other.GetComponent<Player>().SetColor(new Color32(255, 255, 255, 255));
         }
     }
 
