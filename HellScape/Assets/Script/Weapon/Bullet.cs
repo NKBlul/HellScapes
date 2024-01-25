@@ -9,12 +9,14 @@ public class Bullet : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] Collider2D col;
     [SerializeField] Rigidbody2D rb;
+    [SerializeField] SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         col = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
@@ -29,25 +31,26 @@ public class Bullet : MonoBehaviour
 
         if (IsAnimationFinished("Bullet_Explode"))
         {
-            //ObjectPoolManager.instance.ReturnBulletToPool(gameObject);
-            Destroy(gameObject);
+            StartCoroutine(ReturnBulletToPool());
         }
+    }
+
+    IEnumerator ReturnBulletToPool()
+    {
+        spriteRenderer.material.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0);
+        yield return new WaitForSeconds(2f); // Adjust the delay if needed
+        ObjectPoolManager.instance.ReturnBulletToPool(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
         {
+            speed = 0f;
             other.GetComponent<BaseEnemy>().TakeDamage(damage);
-            animator.Play("Bullet_Explode");
             col.enabled = false;
-            rb.velocity = Vector2.zero;
+            animator.Play("Bullet_Explode");
         }
-    }
-
-    public void DisableCol()
-    {
-        col.enabled = false; 
     }
 
     bool IsAnimationFinished(string animationName)

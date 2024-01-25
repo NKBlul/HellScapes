@@ -33,6 +33,8 @@ public class ObjectPoolManager : MonoBehaviour
             if (!pooledObjects[i].activeInHierarchy)
             {
                 // Reset bullet state before returning
+                pooledObjects[i].GetComponent<SpriteRenderer>().material.color = Color.white;
+                pooledObjects[i].GetComponent<Bullet>().speed = 10;
                 pooledObjects[i].transform.position = Vector3.zero;
                 pooledObjects[i].transform.rotation = Quaternion.identity;
 
