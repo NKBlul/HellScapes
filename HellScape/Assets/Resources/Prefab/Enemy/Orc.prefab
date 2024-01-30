@@ -196,3 +196,4 @@ MonoBehaviour:
   rb: {fileID: 0}
   col: {fileID: 0}
   animator: {fileID: 0}
+  spriteRenderer: {fileID: 0}

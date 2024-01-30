@@ -1,16 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BaseEnemy : BaseCharacter
 {
     private Transform player;
     Vector3 defaultScale;
+    [SerializeField] GameObject damagePopup;
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
 
+        damagePopup = Resources.Load<GameObject>("Prefab/damagePopUp");
         defaultScale = transform.localScale;
         player = FindObjectOfType<Player>().transform;
     }

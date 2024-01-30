@@ -166,8 +166,7 @@ public class Player : BaseCharacter
                 float angleOffset = (amount - 1) * 22.5f; // Half of the total angle spread
                 float angle = (i * 45f) - angleOffset;
                 bulletRotation *= Quaternion.Euler(0f, 0f, angle);
-                //GameObject bullet = Instantiate(buletPrefab, gunShoot.position, bulletRotation);
-                //Destroy(bullet, 2.0f);
+
                 // Instantiate the bullet with the calculated rotation 
                 if (bullet != null)
                 {
@@ -188,8 +187,7 @@ public class Player : BaseCharacter
 
                 Vector2 newBulletStartPos = new Vector2(gunShoot.position.x, gunShoot.position.y + 0.15f);
                 Vector2 newBulletPos = new Vector2(gunShoot.position.x, newBulletStartPos.y - 0.3f * i);
-                //GameObject bullet = Instantiate(buletPrefab, newBulletPos, gunShoot.rotation);
-                //Destroy(bullet, 2.0f);
+
                 // Instantiate the bullet with the calculated position
                 if (bullet != null)
                 {

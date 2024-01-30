@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -85,6 +86,5 @@ public class BaseCharacter : MonoBehaviour
     {
         color.a = 255;
         spriteRenderer.material.color = color;
-        Debug.Log("Player Color: " + spriteRenderer.color.ToHexString());
     }
 }
