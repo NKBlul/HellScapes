@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Troll : BaseEnemy
 {
     private bool isRegenHp;
     [SerializeField]private float regenCooldown = 2f;
+    [SerializeField] GameObject healPopup;
     public ParticleSystem regenParticle;
+    int regenAmount = 2;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -43,9 +46,17 @@ public class Troll : BaseEnemy
         yield return new WaitForSeconds(regenCooldown);
         AudioManager.instance.PlaySFX("Troll_Regen");
         regenParticle.Play();
-        currentHp += 2;
+        ShowHealText(regenAmount);
+        currentHp += regenAmount;
         currentHp = Mathf.Min(currentHp, maxHp);
         isRegenHp = false;
+    }
+
+    private void ShowHealText(float healText)
+    {
+        GameObject popup = Instantiate(healPopup, transform.position, Quaternion.identity);
+        popup.GetComponentInChildren<TextMeshPro>().text = "+" + healText.ToString();
+        Destroy(popup, 0.7f);
     }
 
     protected override void Die()
