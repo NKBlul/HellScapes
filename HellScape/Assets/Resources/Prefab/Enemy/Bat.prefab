@@ -187,4 +187,5 @@ MonoBehaviour:
   col: {fileID: 0}
   animator: {fileID: 0}
   spriteRenderer: {fileID: 0}
+  damagePopup: {fileID: 6700314127761011472, guid: c1072e0e34f9efa41ad948abe01ccc72, type: 3}
   snowOrb: {fileID: 1482801119442818381, guid: bd2b714c89f5d554485e4d9bfc3efa18, type: 3}

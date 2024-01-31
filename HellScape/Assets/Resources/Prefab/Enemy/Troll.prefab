@@ -198,6 +198,7 @@ MonoBehaviour:
   col: {fileID: 0}
   animator: {fileID: 0}
   spriteRenderer: {fileID: 0}
+  damagePopup: {fileID: 6700314127761011472, guid: c1072e0e34f9efa41ad948abe01ccc72, type: 3}
   regenCooldown: 2
   regenParticle: {fileID: 8049685246078714273}
 --- !u!1 &5727699129961711642

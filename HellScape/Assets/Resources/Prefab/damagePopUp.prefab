@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4663979373603918174}
   - component: {fileID: 3839962811306876190}
   - component: {fileID: 8672541709046584072}
+  - component: {fileID: 2964758323176462372}
+  - component: {fileID: 2748137818112194184}
   m_Layer: 0
   m_Name: damagePopUp
   m_TagString: Untagged
@@ -171,3 +173,32 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 3839962811306876190}
   m_maskType: 0
+--- !u!95 &2964758323176462372
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6700314127761011472}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f614bf463109493499fa195f61305d27, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!33 &2748137818112194184
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6700314127761011472}
+  m_Mesh: {fileID: 0}

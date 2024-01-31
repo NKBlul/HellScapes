@@ -197,4 +197,5 @@ MonoBehaviour:
   col: {fileID: 0}
   animator: {fileID: 0}
   spriteRenderer: {fileID: 0}
+  damagePopup: {fileID: 6700314127761011472, guid: c1072e0e34f9efa41ad948abe01ccc72, type: 3}
   bomb: {fileID: 1967111735125492007, guid: 92331034798b2964a97a5c37189b1175, type: 3}

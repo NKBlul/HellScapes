@@ -47,9 +47,16 @@ public class BaseEnemy : BaseCharacter
 
     public override void TakeDamage(float damage)
     {
+        ShowDamageText(damage);
         base.TakeDamage(damage);
-
         AudioManager.instance.PlaySFX("Enemy_Hit");
+    }
+
+    private void ShowDamageText(float damagetext)
+    {
+        GameObject popup = Instantiate(damagePopup, transform.position, Quaternion.identity);
+        popup.GetComponentInChildren<TextMeshPro>().text = "-" + damagetext.ToString();
+        Destroy(popup, 0.7f);
     }
 
     protected override void Die()
