@@ -11,6 +11,6 @@ public class Shield : BasePowerup
 
     public override void ActivatePowerup()
     {
-        throw new System.NotImplementedException();
+        Debug.Log($"{gameObject.name} powerup activated");
     }
 }
