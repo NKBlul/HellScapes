@@ -5,8 +5,10 @@ using UnityEngine;
 public class PowerupSlotsSpawner : MonoBehaviour
 {
     public static PowerupSlotsSpawner Instance;
+
     private int numOfPowerup = 3;
     List<GameObject> powerups = new List<GameObject>();
+    public bool powerupPicked;
 
     private void Awake()
     {
@@ -16,13 +18,26 @@ public class PowerupSlotsSpawner : MonoBehaviour
     void Start()
     {
         powerups.AddRange(Resources.LoadAll<GameObject>("Prefab/Powerup"));
+
+        SpawnPowerUps();
     }
 
-    public void SpawnPowerUps(int numOfPowerup)
+    public void SpawnPowerUps()
     {
         for (int i = 0; i < numOfPowerup; i++) 
         {
             GameObject powerup = Instantiate(GetRandomPowerup(), transform);
+            powerups.Add(powerup);
+        }
+    }
+
+    public void RemoveAllPowerup()
+    {
+        powerups.Clear();
+        foreach (Transform child in transform)
+        {
+            GameObject powerup = child.gameObject;
+            Destroy(powerup);
         }
     }
 

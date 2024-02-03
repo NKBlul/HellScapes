@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class BasePowerup : MonoBehaviour
+public class BasePowerup : MonoBehaviour
 {
     public PowerupSO powerupSO;
 
@@ -18,5 +18,10 @@ public abstract class BasePowerup : MonoBehaviour
         powerupName.text = powerupSO.powerupName;
     }
 
-    public abstract void ActivatePowerup();
+    protected virtual void ActivatePowerup()
+    {
+        Debug.Log($"{gameObject.name} powerup activated");
+        PowerupSlotsSpawner.Instance.powerupPicked = true;
+        PowerupSlotsSpawner.Instance.RemoveAllPowerup();
+    }
 }

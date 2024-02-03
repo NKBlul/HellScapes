@@ -9,8 +9,8 @@ public class Shield : BasePowerup
         base.Awake();
     }
 
-    public override void ActivatePowerup()
+    protected override void ActivatePowerup()
     {
-        Debug.Log($"{gameObject.name} powerup activated");
+        base.ActivatePowerup();
     }
 }

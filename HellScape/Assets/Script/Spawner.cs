@@ -62,6 +62,7 @@ public class Spawner : MonoBehaviour
 
     private IEnumerator WaveText(int numOfEnemiesToSpawn)
     {
+        PowerupSlotsSpawner.Instance.SpawnPowerUps();
         UIManager.Instance.waveText.rectTransform.localPosition = Vector3.zero; //set to middle
         UIManager.Instance.waveText.rectTransform.localScale = new Vector3(2, 2, 2); //scale to make it look cool
         totalEnemyThisWave = numOfEnemiesToSpawn; //update total enemy to the new number
