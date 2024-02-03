@@ -9,6 +9,7 @@ public class PowerupSlotsSpawner : MonoBehaviour
     private int numOfPowerup = 3;
     List<GameObject> powerups = new List<GameObject>();
     public bool powerupPicked;
+    public bool powerupSpawned = false;
 
     private void Awake()
     {
@@ -18,8 +19,6 @@ public class PowerupSlotsSpawner : MonoBehaviour
     void Start()
     {
         powerups.AddRange(Resources.LoadAll<GameObject>("Prefab/Powerup"));
-
-        SpawnPowerUps();
     }
 
     public void SpawnPowerUps()
@@ -29,14 +28,15 @@ public class PowerupSlotsSpawner : MonoBehaviour
             GameObject powerup = Instantiate(GetRandomPowerup(), transform);
             powerups.Add(powerup);
         }
+        powerupSpawned = true;
     }
 
     public void RemoveAllPowerup()
     {
-        powerups.Clear();
         foreach (Transform child in transform)
         {
             GameObject powerup = child.gameObject;
+            powerups.Remove(powerup);
             Destroy(powerup);
         }
     }

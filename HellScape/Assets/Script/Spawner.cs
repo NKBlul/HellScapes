@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    public static Spawner Instance;
+
     public Transform spawnPoint;
 
     private List<GameObject> enemyPrefabs = new List<GameObject>();
@@ -13,7 +15,7 @@ public class Spawner : MonoBehaviour
 
     private GameObject boss;
 
-    private int waveNum;
+    public int waveNum;
     private int enemyToSpawn;
     private int numOfEnemyLeft;
     public int totalEnemyThisWave;
@@ -28,6 +30,11 @@ public class Spawner : MonoBehaviour
     private const float textDisplayTime = 1.5f;
 
     private Player player;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -62,7 +69,6 @@ public class Spawner : MonoBehaviour
 
     private IEnumerator WaveText(int numOfEnemiesToSpawn)
     {
-        PowerupSlotsSpawner.Instance.SpawnPowerUps();
         UIManager.Instance.waveText.rectTransform.localPosition = Vector3.zero; //set to middle
         UIManager.Instance.waveText.rectTransform.localScale = new Vector3(2, 2, 2); //scale to make it look cool
         totalEnemyThisWave = numOfEnemiesToSpawn; //update total enemy to the new number
@@ -84,9 +90,10 @@ public class Spawner : MonoBehaviour
         UIManager.Instance.enemyLeftText.text = numOfEnemyLeft.ToString();
         UIManager.Instance.progressionBar.fillAmount = Mathf.Lerp(UIManager.Instance.progressionBar.fillAmount, (float)numOfEnemyLeft / totalEnemyThisWave, Time.deltaTime * 5f);
 
-        if (numOfEnemyLeft == 0 && !spawnNewWave) //if all enemy died
+        if (numOfEnemyLeft == 0 && !spawnNewWave && waveNum > 0 && !PowerupSlotsSpawner.Instance.powerupSpawned) //if all enemy died
         {
-            NewEnemyWave(3 + waveNum);
+            //NewEnemyWave(3 + waveNum);
+            PowerupSlotsSpawner.Instance.SpawnPowerUps();
         }
     }
 
@@ -135,7 +142,7 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    private void NewEnemyWave(int numOfEnemiesToSpawn)
+    public void NewEnemyWave(int numOfEnemiesToSpawn)
     {
         waveNum++; //Increase wave
         UIManager.Instance.waveText.text = $"Wave: {waveNum}"; //Update wave text
