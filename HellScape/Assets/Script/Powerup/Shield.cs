@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Shield : BasePowerup
 {
+    [SerializeField] GameObject shieldPrefab;
     protected override void Awake()
     {
         base.Awake();

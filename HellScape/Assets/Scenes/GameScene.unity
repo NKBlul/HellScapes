@@ -3837,6 +3837,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerupPicked: 0
+  powerupSpawned: 0
 --- !u!1 &857346950
 GameObject:
   m_ObjectHideFlags: 0
@@ -4933,6 +4934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 258040274}
+  waveNum: 0
   totalEnemyThisWave: 0
 --- !u!4 &1195248102
 Transform:

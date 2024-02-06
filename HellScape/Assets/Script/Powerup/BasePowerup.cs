@@ -8,12 +8,14 @@ using UnityEngine.UI;
 public class BasePowerup : MonoBehaviour
 {
     public PowerupSO powerupSO;
+    public Player player;
 
     [SerializeField] Image powerupImage;
     [SerializeField] TextMeshProUGUI powerupName;
 
     protected virtual void Awake()
     {
+        player = GameObject.Find("Player").GetComponent<Player>();
         powerupImage.sprite = powerupSO.powerupImage;
         powerupName.text = powerupSO.powerupName;
     }
