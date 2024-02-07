@@ -20,7 +20,7 @@ public class BasePowerup : MonoBehaviour
         powerupName.text = powerupSO.powerupName;
     }
 
-    protected virtual void ActivatePowerup()
+    public virtual void ActivatePowerup()
     {
         Debug.Log($"{gameObject.name} powerup activated");
         PowerupSlotsSpawner.Instance.powerupPicked = true;

@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shield : BasePowerup
+public class ExtraSpeed : BasePowerup
 {
-    [SerializeField] GameObject shieldPrefab;
     protected override void Awake()
     {
         base.Awake();
@@ -12,7 +11,6 @@ public class Shield : BasePowerup
 
     public override void ActivatePowerup()
     {
-        GameObject shield = Instantiate(shieldPrefab, player.transform);
         base.ActivatePowerup();
     }
 }

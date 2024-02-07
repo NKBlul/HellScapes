@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b136d3b258b09345bd39a82351a4941, type: 3}
   m_Name: ExtraDamage
   m_EditorClassIdentifier: 
-  powerupImage: {fileID: -361764782, guid: a315624ed49ab0e40946ea980e9bcda0, type: 3}
+  powerupImage: {fileID: 738463114, guid: b5726c53b15ce964ea9da662a2caf103, type: 3}
   powerupName: ExtraDamage

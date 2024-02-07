@@ -9,7 +9,7 @@ public class ExtraDamage : BasePowerup
         base.Awake();
     }
 
-    protected override void ActivatePowerup()
+    public override void ActivatePowerup()
     {
         base.ActivatePowerup();
     }

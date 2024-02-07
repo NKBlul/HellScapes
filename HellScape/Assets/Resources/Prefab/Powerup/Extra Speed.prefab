@@ -87,9 +87,9 @@ GameObject:
   - component: {fileID: 1342711880309895724}
   - component: {fileID: 6295871769175662654}
   - component: {fileID: 7000944234269661099}
-  - component: {fileID: -6601262424263505448}
+  - component: {fileID: 3659309997451837828}
   m_Layer: 5
-  m_Name: Shield
+  m_Name: Extra Speed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -198,8 +198,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -6601262424263505448}
-        m_TargetAssemblyTypeName: Shield, Assembly-CSharp
+      - m_Target: {fileID: 3659309997451837828}
+        m_TargetAssemblyTypeName: ExtraSpeed, Assembly-CSharp
         m_MethodName: ActivatePowerup
         m_Mode: 1
         m_Arguments:
@@ -210,7 +210,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &-6601262424263505448
+--- !u!114 &3659309997451837828
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -219,14 +219,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2378840858011836926}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ac000512aa0f8344bf8ad5b87633df7, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d1fd1c20ca4a164283cff12ab1a03b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerupSO: {fileID: 11400000, guid: fe7ffb8abc075654b8d6293ac8562b49, type: 2}
+  powerupSO: {fileID: 11400000, guid: a044c93e979c4e2459c4cb1ce205e1be, type: 2}
   player: {fileID: 0}
   powerupImage: {fileID: 8482273856043262531}
   powerupName: {fileID: 2494410486018559574}
-  shieldPrefab: {fileID: 8974771735728327729, guid: 0654d44a7acd8d743bfe2685b44e8831, type: 3}
 --- !u!1 &8217956038393245750
 GameObject:
   m_ObjectHideFlags: 0
