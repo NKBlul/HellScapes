@@ -4,28 +4,13 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BaseCharacter : MonoBehaviour
+public class BaseCharacter : BaseGameObject
 {
-    [Header("References:")]
-    [HideInInspector] public Rigidbody2D rb;
-    [HideInInspector] public Collider2D col;
-    [HideInInspector] public Animator animator;
-    [HideInInspector] public SpriteRenderer spriteRenderer;
-
     [Header("Stats:")]
     protected float maxHp;
     protected float currentHp;
     protected float damage;
     protected float moveSpeed;
-
-    // Start is called before the first frame update
-    protected virtual void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        col = GetComponent<Collider2D>();
-        animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
 
     public virtual void TakeDamage(float damage)
     {
@@ -59,17 +44,6 @@ public class BaseCharacter : MonoBehaviour
         {
             enemy.moveSpeed = speed;
         }
-    }
-
-    protected bool IsAnimationFinished(string animationName)
-    {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName(animationName))
-        {
-            // Check if the normalizedTime is greater than or equal to 1
-            return animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f;
-        }
-
-        return false;
     }
 
     public float GetHP()

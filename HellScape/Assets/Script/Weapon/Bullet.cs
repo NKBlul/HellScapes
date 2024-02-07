@@ -2,25 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : BaseGameObject
 {
     public float speed;
     float damage;
-    [SerializeField] Animator animator;
-    [SerializeField] Collider2D col;
-    [SerializeField] Rigidbody2D rb;
-    [SerializeField] SpriteRenderer spriteRenderer;
 
-    private void Awake()
+    protected override void Start()
     {
-        animator = GetComponent<Animator>();
-        col = GetComponent<Collider2D>();
-        rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
+        base.Start();
 
-    private void Start()
-    {
         damage = FindObjectOfType<Player>().GetDamage();
     }
 
@@ -51,16 +41,5 @@ public class Bullet : MonoBehaviour
             col.enabled = false;
             animator.Play("Bullet_Explode");
         }
-    }
-
-    bool IsAnimationFinished(string animationName)
-    {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName(animationName))
-        {
-            // Check if the normalizedTime is greater than or equal to 1
-            return animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f;
-        }
-
-        return false;
     }
 }
