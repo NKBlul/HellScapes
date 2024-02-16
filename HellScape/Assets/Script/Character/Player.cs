@@ -18,9 +18,11 @@ public class Player : BaseCharacter
     public Transform gun;
     public GameObject muzzle;
     public float offset;
-    public float fireRate = 0.5f; // Adjust this value for the desired fire rate
+    public float fireRate; // Adjust this value for the desired fire rate
     private float nextFireTime;
     public int numOfBullet = 1;
+    public float bulletSpacing;
+    public float bulletAngle;
 
     [Header("Dodge: ")]
     private bool dodge = false;
@@ -119,12 +121,17 @@ public class Player : BaseCharacter
         {
             if (inputActions.Player.Shoot.IsPressed() && !dodge)
             {
-                AudioManager.instance.PlaySFX("Shoot");
-                muzzle.gameObject.SetActive(true);
-                ShootBulletAmount(numOfBullet);
-                StartCoroutine(DisableMuzzle());
+                ShootBullet();
             }
         }   
+    }
+
+    private void ShootBullet()
+    {
+        AudioManager.instance.PlaySFX("Shoot");
+        muzzle.gameObject.SetActive(true);
+        ShootBulletAmount(numOfBullet);
+        StartCoroutine(DisableMuzzle());
     }
 
     IEnumerator DisableMuzzle()
@@ -153,20 +160,20 @@ public class Player : BaseCharacter
 
     private void ShootBulletAmount(int amount)
     {
-        if (amount % 2 != 0) // odd
+        if (amount != 0) // odd
         {
             for (int i = 0; i < amount; i++) //spread shot
             {
                 GameObject bullet = ObjectPoolManager.instance.GetPooledObject();
-
+    
                 // Calculate rotation based on the player's gunShoot rotation
                 Quaternion bulletRotation = gunShoot.rotation;
-
+    
                 // Adjust the rotation based on the loop index and total bullet count
-                float angleOffset = (amount - 1) * 22.5f; // Half of the total angle spread
-                float angle = (i * 45f) - angleOffset;
+                float angleOffset = (amount - 1) * (bulletAngle/2); // Half of the total angle spread
+                float angle = (i * bulletAngle) - angleOffset;
                 bulletRotation *= Quaternion.Euler(0f, 0f, angle);
-
+    
                 // Instantiate the bullet with the calculated rotation 
                 if (bullet != null)
                 {
@@ -178,27 +185,36 @@ public class Player : BaseCharacter
                 }
             }
         }
-        else //even
-        {
-            for (int i = 0; i < amount; i++)
-            {
-                // Instantiate a new bullet for each iteration
-                GameObject bullet = ObjectPoolManager.instance.GetPooledObject();
-
-                Vector2 newBulletStartPos = new Vector2(gunShoot.position.x, gunShoot.position.y + 0.15f);
-                Vector2 newBulletPos = new Vector2(gunShoot.position.x, newBulletStartPos.y - 0.3f * i);
-
-                // Instantiate the bullet with the calculated position
-                if (bullet != null)
-                {
-                    bullet.GetComponent<Collider2D>().enabled = true;
-                    bullet.transform.position = newBulletPos;
-                    bullet.transform.rotation = gunShoot.rotation;
-                    bullet.SetActive(true);
-                    ObjectPoolManager.instance.ReturnBulletToPool(bullet, 2f);
-                }
-            }
-        }
+        //else
+        //{
+        //    for (int i = 0; i < amount; i++)
+        //    {
+        //        // Instantiate a new bullet for each iteration
+        //        GameObject bullet = ObjectPoolManager.instance.GetPooledObject();
+        //
+        //        // Calculate rotation based on the player's gunShoot rotation
+        //        Quaternion bulletRotation = gunShoot.rotation;
+        //
+        //        // Adjust the position for even bullet spread horizontally
+        //        float offsetX = 0;
+        //
+        //        // Calculate the y-position offset to shoot both above and below
+        //        float offsetY = (i % 2 == 0) ? bulletSpacing * 0.5f : -bulletSpacing * 0.5f;
+        //
+        //        // Set the bullet's position with the calculated offsets
+        //        Vector2 newBulletPos = (Vector2)gunShoot.position + new Vector2(offsetX, offsetY);
+        //
+        //        // Instantiate the bullet with the calculated position
+        //        if (bullet != null)
+        //        {
+        //            bullet.GetComponent<Collider2D>().enabled = true;
+        //            bullet.transform.position = newBulletPos;
+        //            bullet.transform.rotation = gunShoot.rotation;
+        //            bullet.SetActive(true);
+        //            ObjectPoolManager.instance.ReturnBulletToPool(bullet, 2f);
+        //        }
+        //    }
+        //}
         nextFireTime = Time.time + 1f / fireRate; // Calculate next allowed fire time based on fire rate (higher fireRate faster shoot)
     }
 
