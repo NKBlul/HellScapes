@@ -12,6 +12,14 @@ public class BaseCharacter : BaseGameObject
     protected float damage;
     protected float moveSpeed;
 
+    [HideInInspector] public Animator animator;
+
+    protected override void Start()
+    {
+        base.Start();
+        animator = GetComponent<Animator>();
+    }
+
     public virtual void TakeDamage(float damage)
     {
         currentHp -= damage;
@@ -60,5 +68,16 @@ public class BaseCharacter : BaseGameObject
     {
         color.a = 255;
         spriteRenderer.material.color = color;
+    }
+
+    protected bool IsAnimationFinished(string animationName)
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName(animationName))
+        {
+            // Check if the normalizedTime is greater than or equal to 1
+            return animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f;
+        }
+
+        return false;
     }
 }

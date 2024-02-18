@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,6 +12,7 @@ public class Player : BaseCharacter
     [SerializeField] private Vector2 mouseInput;
 
     [Header("Shoot: ")]
+    public GameObject bulletPrefab;
     public Transform aim;
     public Transform gunShoot;
     public Transform gun;
@@ -21,8 +21,8 @@ public class Player : BaseCharacter
     public float fireRate; // Adjust this value for the desired fire rate
     private float nextFireTime;
     public int numOfBullet = 1;
-    public float bulletSpacing;
     public float bulletAngle;
+    float bulletLiveTime = 2f;
 
     [Header("Dodge: ")]
     private bool dodge = false;
@@ -164,8 +164,8 @@ public class Player : BaseCharacter
         {
             for (int i = 0; i < amount; i++) //spread shot
             {
-                GameObject bullet = ObjectPoolManager.instance.GetPooledObject();
-    
+                GameObject bullet = ObjectPoolManager.instance.SpawnObject(bulletPrefab, gunShoot.position, Quaternion.identity);
+
                 // Calculate rotation based on the player's gunShoot rotation
                 Quaternion bulletRotation = gunShoot.rotation;
     
@@ -173,48 +173,13 @@ public class Player : BaseCharacter
                 float angleOffset = (amount - 1) * (bulletAngle/2); // Half of the total angle spread
                 float angle = (i * bulletAngle) - angleOffset;
                 bulletRotation *= Quaternion.Euler(0f, 0f, angle);
-    
-                // Instantiate the bullet with the calculated rotation 
-                if (bullet != null)
-                {
-                    bullet.GetComponent<Collider2D>().enabled = true;
-                    bullet.transform.position = gunShoot.position;
-                    bullet.transform.rotation = bulletRotation;
-                    bullet.SetActive(true);
-                    ObjectPoolManager.instance.ReturnBulletToPool(bullet, 2f);
-                }
+
+                // Set the bullet's rotation
+                bullet.transform.rotation = bulletRotation;
+
+                ObjectPoolManager.instance.ReturnObjectToPool(bullet, bulletLiveTime);
             }
         }
-        //else
-        //{
-        //    for (int i = 0; i < amount; i++)
-        //    {
-        //        // Instantiate a new bullet for each iteration
-        //        GameObject bullet = ObjectPoolManager.instance.GetPooledObject();
-        //
-        //        // Calculate rotation based on the player's gunShoot rotation
-        //        Quaternion bulletRotation = gunShoot.rotation;
-        //
-        //        // Adjust the position for even bullet spread horizontally
-        //        float offsetX = 0;
-        //
-        //        // Calculate the y-position offset to shoot both above and below
-        //        float offsetY = (i % 2 == 0) ? bulletSpacing * 0.5f : -bulletSpacing * 0.5f;
-        //
-        //        // Set the bullet's position with the calculated offsets
-        //        Vector2 newBulletPos = (Vector2)gunShoot.position + new Vector2(offsetX, offsetY);
-        //
-        //        // Instantiate the bullet with the calculated position
-        //        if (bullet != null)
-        //        {
-        //            bullet.GetComponent<Collider2D>().enabled = true;
-        //            bullet.transform.position = newBulletPos;
-        //            bullet.transform.rotation = gunShoot.rotation;
-        //            bullet.SetActive(true);
-        //            ObjectPoolManager.instance.ReturnBulletToPool(bullet, 2f);
-        //        }
-        //    }
-        //}
         nextFireTime = Time.time + 1f / fireRate; // Calculate next allowed fire time based on fire rate (higher fireRate faster shoot)
     }
 

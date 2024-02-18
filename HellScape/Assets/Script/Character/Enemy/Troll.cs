@@ -10,6 +10,7 @@ public class Troll : BaseEnemy
     [SerializeField] GameObject healPopup;
     public ParticleSystem regenParticle;
     int regenAmount = 2;
+    private float lastRegenTime;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -34,22 +35,24 @@ public class Troll : BaseEnemy
             FinishDeadAnim();
         }
 
-        if (currentHp != maxHp && !isRegenHp)
+        if (currentHp != maxHp && isRegenHp && Time.time - lastRegenTime >= regenCooldown)
         {
-            StartCoroutine(RegenHp());        
+            RegenHp();
+            lastRegenTime = Time.time;
         }
     }
 
-    IEnumerator RegenHp()
+    private void RegenHp()
     {
-        isRegenHp = true;
-        yield return new WaitForSeconds(regenCooldown);
         AudioManager.instance.PlaySFX("Troll_Regen");
         regenParticle.Play();
         ShowHealText(regenAmount);
         currentHp += regenAmount;
         currentHp = Mathf.Min(currentHp, maxHp);
-        isRegenHp = false;
+        if (currentHp == maxHp)
+        {
+            isRegenHp = false;
+        }
     }
 
     private void ShowHealText(float healText)

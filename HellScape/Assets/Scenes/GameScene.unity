@@ -4920,7 +4920,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1195248101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6504,7 +6504,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e7afc913dbc14e4fa5dc9e0e30da20f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 324318829828314069, guid: b65f8df5708db7246a13c4a51ddb9d79, type: 3}
 --- !u!4 &1496113317
 Transform:
   m_ObjectHideFlags: 0
@@ -9122,6 +9121,10 @@ PrefabInstance:
       propertyPath: bulletAngle
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 6964312990682815066, guid: 0251a3dfe9cad4e4887acfa5a192f110, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 324318829828314069, guid: b65f8df5708db7246a13c4a51ddb9d79, type: 3}
     - target: {fileID: 6964312990682815066, guid: 0251a3dfe9cad4e4887acfa5a192f110, type: 3}
       propertyPath: bulletSpacing
       value: 1

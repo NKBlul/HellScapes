@@ -13,10 +13,9 @@ GameObject:
   - component: {fileID: 4971113241153970486}
   - component: {fileID: 8072184508917552470}
   - component: {fileID: 367079007198094857}
-  - component: {fileID: 5419281933787199914}
   m_Layer: 0
   m_Name: bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,10 +126,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae387ea3b7c43d48a8bfdcca4452341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  animator: {fileID: 0}
-  col: {fileID: 0}
   rb: {fileID: 0}
+  col: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  speed: 10
 --- !u!70 &367079007198094857
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -166,24 +165,3 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.43, y: 0.4}
   m_Direction: 0
---- !u!95 &5419281933787199914
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 324318829828314069}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8af6ca90bbd3437438b052757fde38be, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
