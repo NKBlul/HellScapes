@@ -194,6 +194,7 @@ public class ObjectPoolManager : MonoBehaviour
     IEnumerator ReturnObjectToPoolAfter(GameObject obj, float time)
     {
         yield return new WaitForSeconds(time);
+        yield return new WaitForEndOfFrame();
 
         // Check if the GameObject is still active before proceeding
         if (obj != null && obj.activeSelf)
