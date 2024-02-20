@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class Bullet : BaseGameObject
 {
+    Player player;
     public float speed;
     float damage;
 
     protected override void Start()
     {
         base.Start();
-
-        damage = FindObjectOfType<Player>().GetDamage();
     }
 
     // Update is called once per frame
@@ -27,5 +26,11 @@ public class Bullet : BaseGameObject
             other.GetComponent<BaseEnemy>().TakeDamage(damage);
             ObjectPoolManager.instance.ReturnObjectToPool(gameObject);
         }
+    }
+
+    private void OnEnable()
+    {
+        player = FindObjectOfType<Player>();
+        damage = player.GetDamage();
     }
 }

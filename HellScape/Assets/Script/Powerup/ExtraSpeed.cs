@@ -11,7 +11,7 @@ public class ExtraSpeed : BasePowerup
 
     public override void ActivatePowerup()
     {
-        player.IncreaseSpeed(0.1f);
+        player.IncreaseSpeed(0.3f);
         base.ActivatePowerup();
     }
 }
