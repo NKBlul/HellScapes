@@ -55,7 +55,7 @@ public class BaseEnemy : BaseCharacter
     private void ShowDamageText(float damagetext)
     {
         GameObject popup = Instantiate(damagePopup, transform.position, Quaternion.identity);
-        popup.GetComponentInChildren<TextMeshPro>().text = "-" + damagetext.ToString();
+        popup.GetComponentInChildren<TextMeshPro>().text = $"-{damagetext.ToString()}";
         Destroy(popup, 0.7f);
     }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class Player : BaseCharacter
 {
@@ -287,4 +288,16 @@ public class Player : BaseCharacter
         col.enabled = true;
     }
     #endregion
+
+    public void IncreaseSpeed(float increaseSpeed)
+    {
+        moveSpeed += increaseSpeed;
+        Debug.Log(moveSpeed);
+    }
+
+    public void IncreaseDamage(float increaseDamage)
+    {
+        damage += increaseDamage;
+        Debug.Log(damage);
+    }
 }

@@ -121,11 +121,11 @@ public class Spawner : MonoBehaviour
         }
         if (waveNum % bossWave == 0) //every 3 wave summon a boss monster
         {
-            //increase number of bullet by 1, and cap it to 3 bullets every 3 wave
-            if (player.numOfBullet != 3)
-            {
-                player.numOfBullet++;
-            }
+            ////increase number of bullet by 1, and cap it to 3 bullets every 3 wave
+            //if (player.numOfBullet != 3)
+            //{
+            //    player.numOfBullet++;
+            //}
             for (int i = 0; i < numOfBossToSpawn; i++) //summon extra boss every 3 wave
             {
                 Instantiate(boss, RandomSpawnPoint(), Quaternion.identity); 

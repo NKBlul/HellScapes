@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExtraSpeed : BasePowerup
+public class ExtraBullet : BasePowerup
 {
     protected override void Awake()
     {
@@ -11,7 +11,7 @@ public class ExtraSpeed : BasePowerup
 
     public override void ActivatePowerup()
     {
-        player.IncreaseSpeed(0.1f);
+        player.numOfBullet++;
         base.ActivatePowerup();
     }
 }

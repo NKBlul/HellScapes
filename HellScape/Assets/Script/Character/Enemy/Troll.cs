@@ -6,7 +6,7 @@ using UnityEngine;
 public class Troll : BaseEnemy
 {
     private bool isRegenHp;
-    [SerializeField]private float regenCooldown = 2f;
+    [SerializeField]private float regenCooldown = 3f;
     [SerializeField] GameObject healPopup;
     public ParticleSystem regenParticle;
     int regenAmount = 2;
@@ -17,7 +17,7 @@ public class Troll : BaseEnemy
     {
         base.Start();
 
-        maxHp = 8f;
+        maxHp = 24f;
         moveSpeed = 2f;
         damage = 2f;
 
@@ -53,7 +53,6 @@ public class Troll : BaseEnemy
         ShowHealText(regenAmount);
         currentHp += regenAmount;
         currentHp = Mathf.Min(currentHp, maxHp);
-        Debug.Log(currentHp);
         isRegenHp = false;
         regenTimer = 0f;
     }

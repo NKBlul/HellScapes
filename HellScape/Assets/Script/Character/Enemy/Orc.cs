@@ -13,7 +13,7 @@ public class Orc : BaseEnemy
 
         base.Start();
 
-        maxHp = 21f;
+        maxHp = 30f;
         moveSpeed = 3f;
         damage = 6f;
 

@@ -11,7 +11,7 @@ public class Goblin : BaseEnemy
     {
         base.Start();
 
-        maxHp = 6f;
+        maxHp = 16f;
         moveSpeed = 2f;
         damage = 3f;
 

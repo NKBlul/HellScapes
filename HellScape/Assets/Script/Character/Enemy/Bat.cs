@@ -11,7 +11,7 @@ public class Bat : BaseEnemy
     {
         base.Start();
 
-        maxHp = 6f;
+        maxHp = 10f;
         moveSpeed = 4f;
         damage = 1f;
 

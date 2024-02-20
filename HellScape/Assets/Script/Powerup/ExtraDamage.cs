@@ -11,6 +11,7 @@ public class ExtraDamage : BasePowerup
 
     public override void ActivatePowerup()
     {
+        player.IncreaseDamage(0.5f);
         base.ActivatePowerup();
     }
 }
