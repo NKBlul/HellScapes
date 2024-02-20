@@ -19,7 +19,7 @@ public class Player : BaseCharacter
     public Transform gun;
     public GameObject muzzle;
     public float offset;
-    public float fireRate; // Adjust this value for the desired fire rate
+    public float fireRate = 3f; // Adjust this value for the desired fire rate
     private float nextFireTime;
     public int numOfBullet = 1;
     public float bulletAngle;

@@ -11,7 +11,6 @@ public class HoverButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     private void Start()
     {
         GetComponent<Image>().color = defaultColor;
-        Debug.Log(defaultColor);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
