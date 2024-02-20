@@ -300,4 +300,10 @@ public class Player : BaseCharacter
         damage += increaseDamage;
         Debug.Log(damage);
     }
+
+    public void IncreaseSpread(int increaseAngle)
+    {
+        bulletAngle += increaseAngle;
+        Debug.Log(bulletAngle);
+    }
 }
