@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shield : BasePowerup
+public class RotatingObject : BasePowerup
 {
-    [SerializeField] GameObject shieldPrefab;
+    public GameObject RotatingGO;
+
     protected override void Awake()
     {
         base.Awake();
@@ -12,7 +13,7 @@ public class Shield : BasePowerup
 
     public override void ActivatePowerup()
     {
-        GameObject shield = ObjectPoolManager.instance.SpawnObject(shieldPrefab, player.transform);
+        ObjectPoolManager.instance.SpawnObject(RotatingGO, player.transform);
         base.ActivatePowerup();
     }
 }

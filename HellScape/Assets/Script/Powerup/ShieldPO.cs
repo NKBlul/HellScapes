@@ -8,8 +8,8 @@ public class ShieldPO : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            Destroy(gameObject);
             other.GetComponent<BaseEnemy>().TakeDamage(other.GetComponent<BaseEnemy>().GetHP());
+            ObjectPoolManager.instance.ReturnObjectToPool(gameObject);
         }
     }
 }
