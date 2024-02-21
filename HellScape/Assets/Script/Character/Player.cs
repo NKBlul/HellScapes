@@ -33,8 +33,6 @@ public class Player : BaseCharacter
 
     ParticleController particleController;
 
-    //public GameObject buletPrefab;
-
     private void Awake()
     {
         inputActions = new Inputs();
