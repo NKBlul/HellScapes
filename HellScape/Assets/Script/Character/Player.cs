@@ -32,6 +32,7 @@ public class Player : BaseCharacter
     [SerializeField] LayerMask nothing;
 
     ParticleController particleController;
+    public int rotatingObjectIndex = -1;
 
     private void Awake()
     {

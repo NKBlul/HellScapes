@@ -22,7 +22,6 @@ public class BasePowerup : MonoBehaviour
 
     public virtual void ActivatePowerup()
     {
-        Debug.Log($"{gameObject.name} powerup activated");
         PowerupSlotsSpawner.Instance.powerupPicked = true;
         PowerupSlotsSpawner.Instance.RemoveAllPowerup();
         Spawner.Instance.NewEnemyWave(3 + Spawner.Instance.waveNum);
