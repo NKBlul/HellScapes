@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b136d3b258b09345bd39a82351a4941, type: 3}
   m_Name: ScoreMultiplier
   m_EditorClassIdentifier: 
-  powerupImage: {fileID: -946364292, guid: a315624ed49ab0e40946ea980e9bcda0, type: 3}
+  powerupImage: {fileID: -218662395, guid: a315624ed49ab0e40946ea980e9bcda0, type: 3}
   powerupName: Score Multiplier
